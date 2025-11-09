@@ -14,6 +14,7 @@ type ButtonWrapperProps = ViewProps & {
     variant?: ButtonKeys;
     hovered?: boolean;
     pressed?: boolean;
+    rounded?: string;
 }
 
 export default function Button({ children, className, shadow = "md", ...rest }: ButtonProps) {
@@ -28,13 +29,13 @@ export default function Button({ children, className, shadow = "md", ...rest }: 
     );
 }
 
-export const ButtonWrapper = ({ children, variant = "default", hovered, pressed, ...rest }: ButtonWrapperProps) => {
+export const ButtonWrapper = ({ children, variant = "default", hovered, pressed, rounded = "full", ...rest }: ButtonWrapperProps) => {
 
     const buttonStyles = buttonVariants[variant];
 
     return (
         <View
-            className={`size-full justify-center items-center rounded-full`}
+            className={`size-full justify-center items-center rounded-${rounded}`}
             {...rest}
             style={{
                 backgroundColor: buttonStyles.default,

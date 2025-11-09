@@ -1,8 +1,8 @@
-import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from "react";
-import { Animated, Image, StyleSheet, TouchableOpacity, View } from "react-native";
+import React, { forwardRef, ReactNode, useEffect, useImperativeHandle, useRef, useState } from "react";
+import { Animated, StyleSheet, TouchableOpacity, View } from "react-native";
 import PagerView from "react-native-pager-view";
 
-const EnhancedCarousel = forwardRef(({images}: {images?: string[]}, ref) => {
+const EnhancedCarousel = forwardRef(({items}: {items?: ReactNode[]}, ref) => {
     const scaleAnimations = useRef<Animated.Value[]>([]);
     const pagerRef = useRef<any>(null);
     const [currentPage, setCurrentPage] = useState(0);
@@ -13,19 +13,19 @@ const EnhancedCarousel = forwardRef(({images}: {images?: string[]}, ref) => {
     // Expose methods to parent component
     useImperativeHandle(ref, () => ({
         goToPage: (page: number) => {
-            if (pagerRef.current && images && page >= 0 && page < images.length) {
+            if (pagerRef.current && items && page >= 0 && page < items.length) {
                 pagerRef.current.setPage(page);
             }
         },
         nextPage: () => {
-            if (pagerRef.current && images) {
-                const nextPage = (currentPage + 1) % images.length;
+            if (pagerRef.current && items) {
+                const nextPage = (currentPage + 1) % items.length;
                 pagerRef.current.setPage(nextPage);
             }
         },
         previousPage: () => {
-            if (pagerRef.current && images) {
-                const prevPage = (currentPage - 1 + images.length) % images.length;
+            if (pagerRef.current && items) {
+                const prevPage = (currentPage - 1 + items.length) % items.length;
                 pagerRef.current.setPage(prevPage);
             }
         }
@@ -33,24 +33,24 @@ const EnhancedCarousel = forwardRef(({images}: {images?: string[]}, ref) => {
 
     // Initialize animations
     useEffect(() => {
-        if (images) {
-            scaleAnimations.current = images.map(() => new Animated.Value(1));
+        if (items) {
+            scaleAnimations.current = items.map(() => new Animated.Value(1));
         }
         setCurrentPage(0);
-    }, [images]);
+    }, [items]);
 
     // Auto-scroll effect
     useEffect(() => {
         startAutoScroll();
         return () => stopAutoScroll();
-    }, [currentPage, images]);
+    }, [currentPage, items]);
 
     const startAutoScroll = () => {
         stopAutoScroll();
-        if (!images || images.length <= 1) return;
+        if (!items || items.length <= 1) return;
         
         autoScrollTimer.current = setTimeout(() => {
-            const nextPage = (currentPage + 1) % images.length;
+            const nextPage = (currentPage + 1) % items.length;
             if (pagerRef.current) {
                 pagerRef.current.setPage(nextPage);
             }
@@ -107,7 +107,7 @@ const EnhancedCarousel = forwardRef(({images}: {images?: string[]}, ref) => {
     };
 
     const goToPage = (page: number) => {
-        if (pagerRef.current && images && page >= 0 && page < images.length) {
+        if (pagerRef.current && items && page >= 0 && page < items.length) {
             pagerRef.current.setPage(page);
         }
     };
@@ -116,7 +116,7 @@ const EnhancedCarousel = forwardRef(({images}: {images?: string[]}, ref) => {
         return scaleAnimations.current[index] || new Animated.Value(1);
     };
 
-    if (!images || images.length === 0) {
+    if (!items || items.length === 0) {
         return (
             <View style={[styles.container, styles.placeholder]}>
                 <View style={styles.placeholderContent} />
@@ -133,7 +133,7 @@ const EnhancedCarousel = forwardRef(({images}: {images?: string[]}, ref) => {
                 onPageScroll={handlePageScroll}
                 onPageSelected={handlePageSelected}
             >
-                {images.map((image, index) => (
+                {items.map((items, index) => (
                     <View key={index} style={styles.page}>
                         <Animated.View 
                             style={[ 
@@ -143,19 +143,15 @@ const EnhancedCarousel = forwardRef(({images}: {images?: string[]}, ref) => {
                                 }
                             ]}
                         >
-                            <Image
-                                source={{ uri: image }}
-                                style={styles.image}
-                                resizeMode="cover"
-                            />
+                            {items}
                         </Animated.View>
                     </View>
                 ))}
             </PagerView>
-            {images.length > 1 && (
+            {items.length > 1 && (
                 <>
                     <View style={styles.pagination}>
-                        {images.map((_, index) => (
+                        {items.map((_, index) => (
                             <TouchableOpacity
                                 key={index}
                                 style={[
@@ -183,6 +179,7 @@ const styles = StyleSheet.create({
     },
     pager: {
         flex: 1,
+        backgroundColor: '#fff',
     },
     page: {
         flex: 1,
@@ -191,6 +188,7 @@ const styles = StyleSheet.create({
         flex: 1,
         width: '100%',
         height: '100%',
+        
     },
     image: {
         flex: 1,
@@ -211,7 +209,7 @@ const styles = StyleSheet.create({
     },
     pagination: {
         position: 'absolute',
-        bottom: 20,
+        bottom: 5,
         flexDirection: 'row',
         alignSelf: 'center',
         backgroundColor: 'rgba(0,0,0,0.3)',
