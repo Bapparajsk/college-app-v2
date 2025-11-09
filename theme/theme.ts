@@ -1,13 +1,51 @@
+import { ButtonVariants } from "@/types/buttonVariants";
+
 export const colors = {
-    primary: '#2563EB',
-    secondary: '#F59E0B',
-    background: '#F9FAFB',
-    surface: '#FFFFFF',
-    textPrimary: '#1E293B',
-    textSecondary: '#475569',
-    border: '#E2E8F0',
-    success: '#16A34A',
-    error: '#DC2626',
-    info: '#0284C7',
-    accent: '#FACC15',
+    default: '#3f3f46',
+    primary: "#006FEE",
+    secondary: "#9353d3",
+    success: "#17c964",
+    warning: "#f5a524",
+    danger: "#f31260",
+    white: "#fff",
+    black: "#000",
 };
+
+export const buttonVariants: ButtonVariants = {
+    default: {
+        default: colors.white,
+        hovered: '#EEEEEE',
+        pressed: '#E6E5E5',
+        text: colors.black,
+    },
+    primary: {
+        default: colors.primary,
+        hovered: '#0056cc',
+        pressed: '#004bb5',
+        text: colors.white,
+    },
+    secondary: {
+        default: colors.secondary,
+        hovered: '#7a39b5',
+        pressed: '#6a2ca3',
+        text: colors.white,
+    },
+    success: {
+        default: colors.success,
+        hovered: '#13a454',
+        pressed: '#0e8f3e',
+        text: colors.black,
+    },
+    error: {
+        default: colors.danger,
+        hovered: '#e02550',
+        pressed: '#c21840',
+        text: colors.black,
+    },
+    warning: {
+        default: colors.warning,
+        hovered: '#d18f1f',
+        pressed: '#b7771a',
+        text: colors.black,
+    },
+}
