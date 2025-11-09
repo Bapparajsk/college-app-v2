@@ -1,6 +1,6 @@
+import Header from "@/components/header/header";
 import { gradient } from "@/theme/linear-gradients";
 import { LinearGradient, } from "expo-linear-gradient";
-import { Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function HomePage() {
@@ -10,11 +10,7 @@ export default function HomePage() {
             colors={gradient.HomePage}
         >
             <SafeAreaView className={"flex-1"}>
-                <Text>
-
-                    Home
-                </Text>
-
+                <Header/>
             </SafeAreaView>
         </LinearGradient>
     );
