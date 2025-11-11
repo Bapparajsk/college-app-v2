@@ -1,5 +1,5 @@
 import { buttonVariants } from "@/theme/theme";
-import { BellIcon, KanbanIcon } from "lucide-react-native";
+import { BellIcon, KanbanIcon, SearchIcon } from "lucide-react-native";
 import { Image, View } from "react-native";
 import Button, { ButtonWrapper } from "../ui/button";
 
@@ -36,6 +36,21 @@ export default function Header() {
                         {({ pressed, hovered }) => {
                             const buttonColors = buttonVariants.default;
                             return (
+                                <ButtonWrapper rounded="full" hovered={hovered} pressed={pressed} >
+                                    <SearchIcon
+                                        size={24}
+                                        color={buttonColors.text}
+                                    />
+                                </ButtonWrapper>
+                            )
+                        }}
+                    </Button>
+                    <Button
+                        className="size-16 rounded-full"
+                    >
+                        {({ pressed, hovered }) => {
+                            const buttonColors = buttonVariants.default;
+                            return (
                                 <ButtonWrapper hovered={hovered} pressed={pressed}>
                                     <BellIcon
                                         size={24}
@@ -49,14 +64,14 @@ export default function Header() {
                         className="size-16 rounded-full"
                     >
                         {({ pressed }) => (
-                            <Image
-                                className="size-full rounded-full"
-                                style={{
-                                    opacity: pressed ? 0.7 : 1,
-                                }}
-                                source={{ uri: "https://pics.craiyon.com/2023-07-15/dc2ec5a571974417a5551420a4fb0587.webp" }}
-                                resizeMode="cover"
-                            />
+                            <View className="size-full rounded-full overflow-hidden bg-pink-500">
+                                <Image
+                                    className="w-full h-full"
+                                    source={{ uri: "https://pics.craiyon.com/2023-07-15/dc2ec5a571974417a5551420a4fb0587.webp" }}
+                                    resizeMode="none"
+                                    // fadeDuration={200}
+                                />
+                            </View>
                         )}
                     </Button>
                 </View>

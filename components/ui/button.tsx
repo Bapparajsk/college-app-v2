@@ -41,6 +41,7 @@ export const ButtonWrapper = ({ children, variant = "default", hovered, pressed,
                 backgroundColor: buttonStyles.default,
                 ...(hovered ? { backgroundColor: buttonStyles.hovered } : {}),
                 ...(pressed ? { backgroundColor: buttonStyles.pressed } : {}),
+                
             }}
         >
             {children}
