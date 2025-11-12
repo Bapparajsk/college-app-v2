@@ -92,14 +92,14 @@ export default function SearchButton() {
         <View className="w-full h-20 py-2 items-center justify-center">
             <Link href={"/search"} asChild>
                 <Button
-                    className="size-full rounded-full"
+                    className="size-full rounded-full "
                     onPressIn={handlePressIn}
                     onPressOut={handlePressOut}
                 >
                     {({ pressed }) => {
                         return (
                             <Animated.View
-                                className="size-full rounded-full bg-[#EFEFEF]"
+                                className="size-full rounded-full bg-[#EFEFEF] border border-gray-300" 
                                 style={[
                                     {
                                         backgroundColor: pressed ? '#e1dfdf' : '#EFEFEF',
