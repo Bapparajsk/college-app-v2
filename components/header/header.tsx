@@ -22,10 +22,10 @@ export default function Header() {
                         )}
                     </Button>
                     <View className="flex gap-1">
-                        <Text className="font-poppins-semibold text-lg">
-                            Hello, User
+                        <Text className="font-poppins-semibold text-xl">
+                            Hello, Bapparaj sk
                         </Text>
-                        <Text className="font-poppins-medium text-sm text-default">
+                        <Text className="font-poppins-medium text-lg text-gray-600">
                             Welcome back!
                         </Text>
                     </View>

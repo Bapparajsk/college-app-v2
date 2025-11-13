@@ -1,12 +1,14 @@
 import { shadows } from "@/theme/shadow";
 import { buttonVariants } from "@/theme/theme";
 import { ButtonKeys } from "@/types/buttonVariants";
-import { Pressable, PressableProps, PressableStateCallbackType, View, ViewProps } from "react-native";
+import { useRouter } from "expo-router";
+import { GestureResponderEvent, Pressable, PressableProps, PressableStateCallbackType, View, ViewProps } from "react-native";
 
 type ButtonProps = PressableProps & {
     children: (props: PressableStateCallbackType) => React.ReactNode;
     className?: string;
     shadow?: keyof typeof shadows;
+    href?: string;
 }
 
 type ButtonWrapperProps = ViewProps & {
@@ -17,11 +19,24 @@ type ButtonWrapperProps = ViewProps & {
     rounded?: string;
 }
 
-export default function Button({ children, className, shadow = "md", ...rest }: ButtonProps) {
+export default function Button({ children, className, shadow = "md", href, onPress, ...rest }: ButtonProps) {
+
+    const router = useRouter();
+
+    const handlePress = (e: GestureResponderEvent) => {
+        if (href) {
+            router.push(href as any);
+        }
+        if (onPress) {
+            onPress(e);
+        }
+    }
+
     return (
         <Pressable
             className={`justify-center items-center ${className}`}
             style={shadows[shadow]}
+            onPress={handlePress}
             {...rest}
         >
             {({ hovered, pressed }) => children({ pressed, hovered })}
@@ -41,7 +56,7 @@ export const ButtonWrapper = ({ children, variant = "default", hovered, pressed,
                 backgroundColor: buttonStyles.default,
                 ...(hovered ? { backgroundColor: buttonStyles.hovered } : {}),
                 ...(pressed ? { backgroundColor: buttonStyles.pressed } : {}),
-                
+
             }}
         >
             {children}
