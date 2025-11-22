@@ -99,10 +99,10 @@ export default function SearchButton() {
                     {({ pressed }) => {
                         return (
                             <Animated.View
-                                className="size-full rounded-full bg-[#EFEFEF] border border-gray-300" 
+                                className="size-full rounded-full bg-[#EFF7F6] border border-gray-300" 
                                 style={[
                                     {
-                                        backgroundColor: pressed ? '#e1dfdf' : '#EFEFEF',
+                                        backgroundColor: pressed ? '#e1dfdf' : '#EFF7F6',
                                     },
                                     buttonScaleStyle
                                 ]}

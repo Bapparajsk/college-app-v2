@@ -1,7 +1,7 @@
 import { ButtonVariants } from "@/types/buttonVariants";
 
 export const colors = {
-    default: '#3f3f46',
+    default: '#EFF7F6',
     primary: "#006FEE",
     secondary: "#9353d3",
     success: "#17c964",
@@ -13,7 +13,7 @@ export const colors = {
 
 export const buttonVariants: ButtonVariants = {
     default: {
-        default: colors.white,
+        default: colors.default,
         hovered: '#EEEEEE',
         pressed: '#E6E5E5',
         text: colors.black,

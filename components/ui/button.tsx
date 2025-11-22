@@ -50,7 +50,7 @@ export const ButtonWrapper = ({ children, variant = "default", hovered, pressed,
 
     return (
         <View
-            className={`size-full justify-center items-center relative rounded-${rounded}`}
+            className={`size-full justify-center items-center overflow-hidden relative rounded-${rounded}`}
             {...rest}
             style={{
                 backgroundColor: buttonStyles.default,
