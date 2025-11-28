@@ -11,7 +11,7 @@ export default function Header() {
                     <Button
                         className="size-16 rounded-full "
                     >
-                        {({ pressed }) => (
+                        {() => (
                             <View className="size-full rounded-full overflow-hidden bg-pink-500">
                                 <Image
                                     className="w-full h-full"
@@ -25,8 +25,8 @@ export default function Header() {
                         <Text className="font-poppins-semibold text-xl">
                             Hello, Bapparaj sk
                         </Text>
-                        <Text className="font-poppins-medium text-lg text-gray-600">
-                            Welcome back!
+                        <Text className="font-poppins-medium text-gray-600 capitalize">
+                            complete your course today
                         </Text>
                     </View>
                 </View>

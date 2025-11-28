@@ -1,38 +1,72 @@
+// components/ProjectsList.tsx
+import { getCategoryDisplayName } from '@/theme/category-themes';
+import { ProjectCategory } from '@/types/project';
 import { FlashList } from "@shopify/flash-list";
-import { LinearGradient } from "expo-linear-gradient";
-import { View } from "react-native";
-import CategoriesCard from "./categoriesCard";
+import { BotMessageSquareIcon, ChevronRightIcon, CodeIcon, CogIcon, LucideIcon, MonitorCogIcon, UnplugIcon, WifiIcon } from "lucide-react-native";
+import React from 'react';
+import { Text, TouchableOpacity, View } from 'react-native';
 
 
-export default function CategoriesList() {
-    return (
-        <View className="relative">
-            <FlashList
-                data={[1, 2, 3, 4, 5]}
-                renderItem={({ item }) => <CategoriesCard />}
-                keyExtractor={(item) => item.toString()}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                contentContainerStyle={{ paddingBottom: 20, paddingHorizontal: 10 }}
-                ItemSeparatorComponent={() => <View style={{ width: 12 }} />}
-                bounces={false}
-            />
-            <LinearGradient
-                pointerEvents="none"
-                    start={{ x: 0, y: 0 }}
-                    end={{ x: 1, y: 0 }}
-                colors={["rgba(255, 255, 255, 0)", "#e4f2f7"]}
-                className="w-4 h-52 absolute right-0 top-0"
-            />
-
-            <LinearGradient
-                pointerEvents="none"
-                start={{ x: 1, y: 0 }}
-                end={{ x: 0, y: 0 }}
-                colors={["rgba(255, 255, 255, 0)", "#e4f2f7"]}
-                className="w-4 h-52 absolute left-0 top-0"
-            />
-        </View>
-    )
+const icons: Record<ProjectCategory, LucideIcon> = {
+    'computer-science': MonitorCogIcon,
+    'electronics': UnplugIcon,
+    'automobile': CogIcon,
+    'software': CodeIcon,
+    'iot': WifiIcon,
+    'robotics': BotMessageSquareIcon,
 }
 
+
+const ProjectsList: React.FC = () => {
+
+    const categories: ProjectCategory[] = [
+        'computer-science',
+        'electronics',
+        'automobile',
+        'software',
+        'iot',
+        'robotics'
+    ];
+
+    return (
+        <View className="flex-1 px-4 mt-4">
+            <Text className="text-2xl font-poppins-semibold mb-3 text-gray-800">
+                Explore Projects
+            </Text>
+            <FlashList
+                data={categories}
+                keyExtractor={(item) => item}
+                renderItem={({ item, index }) => {
+                    const Icon = icons[item as ProjectCategory];
+                    return (
+                        <TouchableOpacity
+                            className={`w-full h-20 rounded-full mb-3 flex-row items-center px-2 ${index === 0 ? "bg-black" : "bg-black/15"}`}
+                            activeOpacity={0.7}
+                        >
+                            <View className='flex-row items-center flex-1'>
+                                <View className='flex-row items-center flex-1'>
+                                    <View className='w-16 h-16  bg-[#EFF7F6] rounded-full items-center justify-center'>
+                                        <Icon size={24} strokeWidth={2.5} />
+                                    </View>
+                                    <View className='ml-2'>
+                                        <Text className={`text-xl font-poppins-semibold ${index === 0 ? "text-white" : "text-gray-800"}`}>
+                                            {getCategoryDisplayName(item)}
+                                        </Text>
+                                        <Text className={`text-lg font-poppins-medium ${index === 0 ? "text-gray-200" : "text-gray-800"}`}>
+                                            {getCategoryDisplayName(item)}
+                                        </Text>
+                                    </View>
+                                </View>
+                                <View className='p-2 rounded-full bg-black mr-3'>
+                                    <ChevronRightIcon color={"white"} />
+                                </View>
+                            </View>
+                        </TouchableOpacity>
+                    );
+                }}
+            />
+        </View>
+    );
+};
+
+export default ProjectsList;
