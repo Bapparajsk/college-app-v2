@@ -1,6 +1,7 @@
 import Header from "@/components/header/header";
 import CategoriesList from "@/components/home/categoriesList";
 import HeroCard from "@/components/home/heroCard";
+import UserProgressHeader from "@/components/home/user-progress-header";
 import { gradient } from "@/theme/linear-gradients";
 import { FlashList } from "@shopify/flash-list";
 import { LinearGradient, } from "expo-linear-gradient";
@@ -18,6 +19,7 @@ export default function HomePage() {
                 <FlashList
                     ListHeaderComponent={
                         <View className="px-4">
+                            <UserProgressHeader/>
                             <HeroCard />
                         </View>
                     }

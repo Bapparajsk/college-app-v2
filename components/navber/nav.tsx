@@ -11,7 +11,7 @@ const AnimatedTouchableOpacity =
   Animated.createAnimatedComponent(TouchableOpacity);
 
 const PRIMARY_COLOR = "#000";
-const SECONDARY_COLOR = "#fff";
+const SECONDARY_COLOR = "#e5e5e5";
 
 const CustomNavBar: React.FC<BottomTabBarProps> = ({
   state,
@@ -59,7 +59,7 @@ const CustomNavBar: React.FC<BottomTabBarProps> = ({
           >
             {getIconByRouteName(
               route.name,
-              isFocused ? "#fff" : "#000"
+              isFocused ? "#EFF7F6" : "#000000"
             )}
             {isFocused && (
               <Animated.Text

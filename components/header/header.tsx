@@ -1,7 +1,8 @@
 import { colors } from "@/theme/theme";
 import { BellIcon, SearchIcon, UserRoundIcon } from "lucide-react-native";
-import { Text, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import Button, { ButtonWrapper } from "../ui/button";
+import CircularProgress from "../ui/CircularProgress";
 
 export default function Header() {
     return (
@@ -13,7 +14,7 @@ export default function Header() {
                     >
                         {() => (
                             <View className="size-full rounded-full overflow-hidden bg-white items-center justify-center">
-                                <UserRoundIcon size={30} strokeWidth={2}/>
+                                <UserRoundIcon size={30} strokeWidth={2} />
                             </View>
                         )}
                     </Button>
@@ -26,23 +27,17 @@ export default function Header() {
                         </Text>
                     </View>
                 </View>
-                <Button
-                    className="size-16 rounded-full"
-                >
-                    {({ pressed, hovered }) => {
-                        return (
-                            <ButtonWrapper hovered={hovered} pressed={pressed} >
-                                <SearchIcon
+                <TouchableOpacity>
+                    <CircularProgress size={55} strokeWidth={1.5} progress={100} color="#000000" bgColor="#ffffff" duration={1000}>
+                        <SearchIcon
                                     size={24}
                                 />
-                            </ButtonWrapper>
-                        )
-                    }}
-                </Button>
-                <Button className="size-16">
+                    </CircularProgress>
+                </TouchableOpacity>
+                <Button className="size-16 ">
                     {({ pressed, hovered }) => {
                         return (
-                            <ButtonWrapper hovered={hovered} pressed={pressed} style={{ backgroundColor: colors.black }}>
+                            <ButtonWrapper rounded="full" hovered={hovered} pressed={pressed} style={{ backgroundColor: colors.black }}>
                                 <BellIcon
                                     size={24}
                                     color={colors.white}

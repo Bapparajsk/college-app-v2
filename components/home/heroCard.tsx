@@ -41,16 +41,26 @@ export default function HeroCard() {
 
                     <View className="absolute inset-0 p-3 flex-1 justify-between">
                         <View className="h-16 w-full px-2 pt-1 flex-row justify-between items-center">
-                            <Button style={{
-                                ...shadows.lg,
-                                shadowColor: "#fff",
-                            }} className="size-16" >
-                                {({ hovered, pressed }) => (
-                                    <ButtonWrapper hovered={hovered} pressed={pressed}>
-                                        <CalendarClockIcon size={28} />
-                                    </ButtonWrapper>
-                                )}
-                            </Button>
+                            <View className="flex-row gap-3 items-center">
+                                <Button style={{
+                                    ...shadows.lg,
+                                    shadowColor: "#fff",
+                                }} className="size-16" >
+                                    {({ hovered, pressed }) => (
+                                        <ButtonWrapper hovered={hovered} pressed={pressed}>
+                                            <CalendarClockIcon size={28} />
+                                        </ButtonWrapper>
+                                    )}
+                                </Button>
+                                <View>
+                                    <Text className="font-poppins-semibold text-lg">
+                                        Today&apos;s Class
+                                    </Text>
+                                    <Text className="font-inter-medium text-sm text-gray-700">
+                                        Monday, 20th Jan
+                                    </Text>
+                                </View>
+                            </View>
                             <View className="size-16 rounded-full bg-white/30 flex justify-center items-center">
                                 <CircularProgress size={55} strokeWidth={4} progress={60} color="#F2B5D4" bgColor="#EFF7F6" duration={1000}>
                                     <Text className="font-inter-semibold text-xl">
@@ -123,23 +133,6 @@ function ClassCard({
                                     <Text className="font-poppins-semibold text-lg">
                                         {subject}
                                     </Text>
-                                    {/* <SquircleView
-                                        cornerSmoothing={100} // 0-100
-                                        preserveSmoothing={true} // false matches figma, true has more rounding
-                                        style={{
-                                            width: 200,
-                                            height: 100,
-                                            flexDirection: "row",
-                                            justifyContent: "center",
-                                            alignItems: "center",
-                                            backgroundColor: "pink",
-                                            borderRadius: 40,
-                                            borderColor: "gray",
-                                            // borderWith: 4
-                                        }}
-                                    >
-                                        <Text>Squircle</Text>
-                                    </SquircleView> */}
                                     <Text className="font-poppins-medium text-sm">
                                         {time}
                                     </Text>
