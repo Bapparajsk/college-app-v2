@@ -6,6 +6,7 @@ import Animated, {
   FadeOut,
   LinearTransition,
 } from "react-native-reanimated";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const AnimatedTouchableOpacity =
   Animated.createAnimatedComponent(TouchableOpacity);
@@ -18,9 +19,13 @@ const CustomNavBar: React.FC<BottomTabBarProps> = ({
   descriptors,
   navigation,
 }) => {
+
+  const insets = useSafeAreaInsets();
+
   return (
     <View
-      className="gap-2 absolute flex-row justify-center items-center w-[80%] self-center bottom-10 rounded-3xl px-3 py-4"
+      className="gap-2 absolute flex-row justify-center items-center w-[80%] self-center rounded-3xl px-3 py-4"
+      style={{ bottom: insets.bottom }}
     >
       {state.routes.map((route, index) => {
         if (["_sitemap", "+not-found"].includes(route.name)) return null;
