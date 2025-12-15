@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, ViewStyle } from 'react-native';
+import { View, ViewStyle } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 
 interface SquircleProps {
@@ -57,13 +57,13 @@ const Squircle: React.FC<SquircleProps> = ({
             `;
         };
 
-        return { fillPath: createPath(0), borderPath: createPath(borderWidth / 2) };
+        return { fillPath: createPath(2), borderPath: createPath(borderWidth / 2) };
     };
 
     const paths = squirclePath();
 
     return (
-        <View style={[styles.container, style, { width, height, transform: [{ rotate: "45deg" }] }]}>
+        <View style={[style, { width, height, transform: [{ rotate: "45deg" }] }]}>
             <Svg width={width} height={height} viewBox={`0 0 ${width} ${height}`}>
                 {/* Fill */}
                 <Path d={paths.fillPath} fill={color} />
@@ -81,11 +81,5 @@ const Squircle: React.FC<SquircleProps> = ({
         </View>
     );
 };
-
-const styles = StyleSheet.create({
-    container: {
-        overflow: 'hidden',
-    },
-});
 
 export default Squircle;
