@@ -1,6 +1,6 @@
-import { buttonVariants } from "@/theme/theme";
-import { BellIcon } from "lucide-react-native";
-import { Image, Text, View } from "react-native";
+import { colors } from "@/theme/theme";
+import { BellIcon, SearchIcon, UserRoundIcon } from "lucide-react-native";
+import { Text, View } from "react-native";
 import Button, { ButtonWrapper } from "../ui/button";
 
 export default function Header() {
@@ -9,15 +9,11 @@ export default function Header() {
             <View className="w-full h-16 flex-row justify-between items-center">
                 <View className="w-auto h-full flex-row justify-center items-center gap-2">
                     <Button
-                        className="size-16 rounded-full "
+                        className="size-16 rounded-full"
                     >
                         {() => (
-                            <View className="size-full rounded-full overflow-hidden bg-pink-500">
-                                <Image
-                                    className="w-full h-full"
-                                    source={{ uri: "https://pics.craiyon.com/2023-07-15/dc2ec5a571974417a5551420a4fb0587.webp" }}
-                                    resizeMode="none"
-                                />
+                            <View className="size-full rounded-full overflow-hidden bg-white items-center justify-center">
+                                <UserRoundIcon size={30} strokeWidth={2}/>
                             </View>
                         )}
                     </Button>
@@ -34,12 +30,22 @@ export default function Header() {
                     className="size-16 rounded-full"
                 >
                     {({ pressed, hovered }) => {
-                        const buttonColors = buttonVariants.default;
                         return (
-                            <ButtonWrapper hovered={hovered} pressed={pressed}>
+                            <ButtonWrapper hovered={hovered} pressed={pressed} >
+                                <SearchIcon
+                                    size={24}
+                                />
+                            </ButtonWrapper>
+                        )
+                    }}
+                </Button>
+                <Button className="size-16">
+                    {({ pressed, hovered }) => {
+                        return (
+                            <ButtonWrapper hovered={hovered} pressed={pressed} style={{ backgroundColor: colors.black }}>
                                 <BellIcon
                                     size={24}
-                                    color={buttonColors.text}
+                                    color={colors.white}
                                 />
                             </ButtonWrapper>
                         )

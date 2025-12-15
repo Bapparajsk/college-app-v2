@@ -91,10 +91,3 @@ const styles = StyleSheet.create({
         fontWeight: '600',
     },
 });
-
-// USAGE EXAMPLE:
-// <CircularProgress size={140} strokeWidth={12} progress={75} color="#10b981" bgColor="#d1fae5" duration={1000} />
-// NOTES:
-// - Requires `react-native-svg` installed and linked.
-// - For TypeScript, add prop types / interfaces as needed.
-// - You can animate using react-native-reanimated by swapping Animated with reanimated values if desired.

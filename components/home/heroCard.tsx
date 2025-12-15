@@ -2,6 +2,7 @@ import { shadows } from "@/theme/shadow";
 import { LinearGradient } from "expo-linear-gradient";
 import { AtomIcon, CalendarClockIcon, ChevronRightIcon, SquareRadicalIcon } from "lucide-react-native";
 import { Pressable, Text, View } from "react-native";
+
 import Button, { ButtonWrapper } from "../ui/button";
 
 import { colors } from "@/theme/theme";
@@ -9,11 +10,12 @@ import { Link } from "expo-router";
 import CircularProgress from "../ui/CircularProgress";
 
 
+
 export default function HeroCard() {
     return (
         <View className="w-full h-[19rem]" >
             <View
-                className="size-full rounded-[2.5rem] overflow-hidden"
+                className="size-full relative"
                 style={shadows.lg}
             >
                 <View
@@ -121,6 +123,23 @@ function ClassCard({
                                     <Text className="font-poppins-semibold text-lg">
                                         {subject}
                                     </Text>
+                                    {/* <SquircleView
+                                        cornerSmoothing={100} // 0-100
+                                        preserveSmoothing={true} // false matches figma, true has more rounding
+                                        style={{
+                                            width: 200,
+                                            height: 100,
+                                            flexDirection: "row",
+                                            justifyContent: "center",
+                                            alignItems: "center",
+                                            backgroundColor: "pink",
+                                            borderRadius: 40,
+                                            borderColor: "gray",
+                                            // borderWith: 4
+                                        }}
+                                    >
+                                        <Text>Squircle</Text>
+                                    </SquircleView> */}
                                     <Text className="font-poppins-medium text-sm">
                                         {time}
                                     </Text>

@@ -44,20 +44,22 @@ export default function Button({ children, className, shadow = "md", href, onPre
     );
 }
 
-export const ButtonWrapper = ({ children, variant = "default", hovered, pressed, rounded = "full", ...rest }: ButtonWrapperProps) => {
+export const ButtonWrapper = ({ children, variant = "default", hovered, pressed, rounded = "full", className, style, ...rest }: ButtonWrapperProps) => {
 
     const buttonStyles = buttonVariants[variant];
 
     return (
         <View
-            className={`size-full justify-center items-center overflow-hidden relative rounded-${rounded}`}
+            className={`size-full justify-center items-center overflow-hidden relative rounded-${rounded} ${className}`}
+            style={[
+                {
+                    backgroundColor: buttonStyles.default,
+                    ...(hovered ? { backgroundColor: buttonStyles.hovered } : {}),
+                    ...(pressed ? { backgroundColor: buttonStyles.pressed } : {}),
+                },
+                style,
+            ]}
             {...rest}
-            style={{
-                backgroundColor: buttonStyles.default,
-                ...(hovered ? { backgroundColor: buttonStyles.hovered } : {}),
-                ...(pressed ? { backgroundColor: buttonStyles.pressed } : {}),
-
-            }}
         >
             {children}
         </View>
