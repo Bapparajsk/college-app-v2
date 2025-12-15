@@ -30,8 +30,8 @@ export default function Header() {
                 <TouchableOpacity>
                     <CircularProgress size={55} strokeWidth={1.5} progress={100} color="#000000" bgColor="#ffffff" duration={1000}>
                         <SearchIcon
-                                    size={24}
-                                />
+                            size={24}
+                        />
                     </CircularProgress>
                 </TouchableOpacity>
                 <Button className="size-16 ">
