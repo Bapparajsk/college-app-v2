@@ -10,10 +10,9 @@ type SubjectCardProps = {
     subTitle: string;
     Icon: LucideIcon;
     href: string;
-    backDropOpacity?: number; 
 }
 
-const SubjectCard: FC<SubjectCardProps> = ({ bgUri, title, subTitle, Icon, href, backDropOpacity }) => {
+const SubjectCard: FC<SubjectCardProps> = ({ bgUri, title, subTitle, Icon, href }) => {
     return (
         <View className='h-52 w-1/2 relative overflow-hidden p-2'>
             <View className='size-full relative bg-[#7BDFF2] rounded-[30px] mb-2 overflow-hidden flex items-center justify-between'>
@@ -24,7 +23,7 @@ const SubjectCard: FC<SubjectCardProps> = ({ bgUri, title, subTitle, Icon, href,
                     className='size-full absolute top-0 left-0 -z-20'
                 />
                 <View
-                    className={`absolute top-0 bottom-0 size-full bg-black/${backDropOpacity ? backDropOpacity : 50}`}
+                    className={`absolute top-0 bottom-0 size-full bg-black/40 -z-10`}
                 />
                 <View className='w-full px-2 pt-2 pb-2 flex-row gap-2 items-center '>
                     <View className='size-14 bg-white/80 rounded-full items-center justify-center'>

@@ -13,7 +13,7 @@ export default function HomePage() {
     return (
         <LinearGradient
             className={"flex-1"}
-            colors={gradient.HomePage}
+            colors={gradient["HomePage"]}
         >
             <SafeAreaView className={"flex-1"}>
                 <Header />

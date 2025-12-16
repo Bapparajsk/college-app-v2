@@ -1,7 +1,7 @@
 import FontProvider from "@/providers/font";
-import {Stack} from "expo-router";
+import { Stack } from "expo-router";
+import { SafeAreaProvider, initialWindowMetrics } from 'react-native-safe-area-context';
 import "./global.css";
-import {SafeAreaProvider, initialWindowMetrics} from 'react-native-safe-area-context';
 
 export default function RootLayout() {
     return (
@@ -11,6 +11,10 @@ export default function RootLayout() {
                     <Stack.Screen name={"(tabs)"} options={{
                         headerShown: false,
                         animation: "fade"
+                    }}/>
+                    <Stack.Screen name={"profile"} options={{
+                        headerShown: false,
+                        animation: "fade_from_bottom"
                     }}/>
                 </Stack>
             </FontProvider>

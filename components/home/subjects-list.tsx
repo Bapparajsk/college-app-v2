@@ -20,7 +20,6 @@ export default function SubjectsList() {
                     subTitle="10 Lessons"
                     href="/subjects/mathematics"
                     Icon={RadicalIcon}
-                    backDropOpacity={40}
                 />
                 <SubjectCard
                     bgUri="https://wallpapers.com/images/hd/english-2000-x-1261-wallpaper-niju8wupslurmn2i.jpg"
@@ -37,7 +36,6 @@ export default function SubjectsList() {
                     subTitle="10 Lessons"
                     href="/subjects/chemistry"
                     Icon={FlaskConicalIcon}
-                    backDropOpacity={40}
                 />
                 <SubjectCard
                     bgUri="https://media.istockphoto.com/id/160380663/vector/seamless-physics-pattern-in-blue-ink.jpg?s=170667a&w=0&k=20&c=X5uD00MDumJO6vxOb-kQyf50-_e4qe5eH8ZiA5VP6_A="

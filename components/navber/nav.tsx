@@ -1,5 +1,5 @@
 import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
-import { CalendarDaysIcon, CogIcon, HouseIcon, MessageCircleIcon } from "lucide-react-native";
+import { AtSignIcon, CalendarDaysIcon, CogIcon, HouseIcon } from "lucide-react-native";
 import { TouchableOpacity, View } from "react-native";
 import Animated, {
   FadeIn,
@@ -87,8 +87,8 @@ const CustomNavBar: React.FC<BottomTabBarProps> = ({
         return <HouseIcon size={24} color={color} strokeWidth={2} />;
       case "routing":
         return <CalendarDaysIcon size={24} color={color} strokeWidth={2} />;
-      case "chat":
-        return <MessageCircleIcon size={22} color={color} strokeWidth={2} />;
+      case "community":
+        return <AtSignIcon size={22} color={color} strokeWidth={2} />;
       case "setting":
         return <CogIcon size={24} color={color} strokeWidth={2} />;
       default:
