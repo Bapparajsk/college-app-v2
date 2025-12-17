@@ -21,7 +21,7 @@ export default function profile() {
                     </View>
                 </LinearGradient>
             </View>
-            <View className='px-4'>
+            <View className='px-4 mt-3'>
                 <Tabs/>
             </View>
         </ScrollView>

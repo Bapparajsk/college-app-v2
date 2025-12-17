@@ -1,4 +1,4 @@
-import { BookmarkIcon, MenuIcon, StarIcon } from 'lucide-react-native'
+import { BookmarkIcon, MenuIcon, PackagePlusIcon, StarIcon } from 'lucide-react-native'
 import React, { Fragment } from 'react'
 import { Image, Text, TouchableOpacity, View } from 'react-native'
 
@@ -17,7 +17,7 @@ export default function UserDetails() {
                     <View className='w-auto h-full items-start justify-center gap-1 ml-4'>
                         <Text className='text-2xl font-poppins-medium'>Bapparaj sk</Text>
                         <Text className='font-poppins-medium text-gray-700 text-lg'>Student at XYZ University</Text>
-                        <View className='px-2 py-2 bg-[#c5c9c9] rounded-lg'>
+                        <View className='px-3 py-2 bg-[#c5c9c9] rounded-xl'>
                             <Text className='text-[14px] leading-none font-poppins-medium'>
                                 1st Year
                             </Text>
@@ -25,29 +25,30 @@ export default function UserDetails() {
                     </View>
                 </View>
             </View>
-            <View className='w-full py-4 flex-row justify-around'>
-                <View className='items-start'>
+            <View className='w-full py-4 flex-row justify-around mb-3'>
+                <View className='items-start gap-1.5'>
                     <Text className='font-poppins-medium text-base text-gray-500'>Rating</Text>
                     <View className='flex-row items-center'>
                         <Text className='text-2xl font-poppins-medium'>4.5 </Text>
                         <StarIcon size={20} />
                     </View>
                 </View>
-                <View className='items-start'>
+                <View className='items-start gap-1.5'>
                     <Text className='font-poppins-medium text-base text-gray-500'>Skill avg.</Text>
                     <Text className='text-2xl font-poppins-medium'>7.9/10</Text>
                 </View>
-                <View className='items-start'>
+                <View className='items-start gap-1.5'>
                     <Text className='font-poppins-medium text-base text-gray-500'>Projects</Text>
                     <Text className='text-2xl font-poppins-medium'>5</Text>
                 </View>
-                <View className='items-start'>
+                <View className='items-start gap-1.5'>
                     <Text className='font-poppins-medium text-base text-gray-500'>Experience</Text>
                     <Text className='text-2xl font-poppins-medium'>+2y</Text>
                 </View>
             </View>
             <View className='w-full h-14 py-1 flex-row gap-2 items-center justify-between'>
                 <TouchableOpacity className='h-full flex-grow flex-row items-center justify-center gap-2 bg-black rounded-2xl'>
+                    <PackagePlusIcon size={20} color='#ffffff' />
                     <Text className='text-lg font-poppins-medium text-white'>Create Project</Text>
                 </TouchableOpacity>
                 <TouchableOpacity className='h-full flex-grow flex-row items-center justify-center gap-2 bg-[#c5c9c97b] rounded-2xl'>
