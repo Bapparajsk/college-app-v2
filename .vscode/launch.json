@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {"name":"Run Android Hermes","request":"launch","type":"reactnativedirect","cwd":"${workspaceFolder}","enableDebug":false,"platform":"android"},
+        {
+            "type": "radon-ide",
+            "request": "launch",
+            "name": "Radon IDE panel",
+            "eas": {}
+        }
+    ]
+}

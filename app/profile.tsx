@@ -3,27 +3,52 @@ import Tabs from '@/components/profile/tabs';
 import UserDetails from '@/components/profile/user-details';
 import { gradient } from '@/theme/linear-gradients';
 import { LinearGradient } from 'expo-linear-gradient';
-import React from 'react';
-import { ScrollView, View } from 'react-native';
+import React, { Fragment } from 'react';
+import { View } from 'react-native';
+import Animated, {
+    useAnimatedScrollHandler,
+    useSharedValue,
+} from 'react-native-reanimated';
 
-export default function profile() {
+export default function Profile() {
+    const scrollY = useSharedValue(0);
+
+    const onScroll = useAnimatedScrollHandler({
+        onScroll: (event) => {
+            scrollY.value = event.contentOffset.y;
+        },
+    });
+
     return (
-        <ScrollView className='flex-1 bg-white'>
-            <View className='w-full h-auto rounded-xl justify-center items-center'>
-                <LinearGradient
-                    className={"flex-1"}
-                    colors={gradient["ProfilePage"]}
-                    style={{ width: '100%' }}
-                >
-                    <View className='w-full h-auto px-4'>
-                        <Header />
-                        <UserDetails />
-                    </View>
-                </LinearGradient>
-            </View>
-            <View className='px-4 mt-3'>
-                <Tabs/>
-            </View>
-        </ScrollView>
-    )
+        <>
+            <Header scrollY={scrollY} />
+
+            <Animated.FlatList
+                data={[0]}
+                keyExtractor={(item, index) => index.toString()}
+                renderItem={() => (
+                    <Fragment>
+                        <View className="w-full">
+                            <LinearGradient
+                                colors={gradient["ProfilePage"]}
+                                style={{ width: '100%' }}
+                            >
+                                <View className="px-4">
+                                    <UserDetails />
+                                </View>
+                            </LinearGradient>
+                        </View>
+
+                        <View className="px-4 mt-3">
+                            <Tabs />
+                        </View>
+                    </Fragment>
+                )}
+                onScroll={onScroll}
+                scrollEventThrottle={16}
+                contentContainerStyle={{ paddingTop: 80, paddingBottom: 40, backgroundColor: '#ffffff' }}
+                showsVerticalScrollIndicator={false}
+            />
+        </>
+    );
 }
