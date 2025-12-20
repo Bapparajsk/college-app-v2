@@ -1,3 +1,4 @@
+import { MemberCardProps } from "@/components/profile/member-card";
 import { ProjectCardProps } from "@/components/ui/project-card";
 
 export const sampleProjects: ProjectCardProps[] = [
@@ -45,5 +46,40 @@ export const sampleProjects: ProjectCardProps[] = [
         members: 10,
         contributors: 30,
         type: "game",
+    },
+];
+
+export const simpleMembers:MemberCardProps[] = [
+    {
+        name: "Alice Johnson",
+        experience: "3y",
+        project_count: 12,
+        rating: 4.5,
+        skill_avg: 8.7,
+        year: "2nd",
+    },
+    {
+        name: "Bob Smith",
+        experience: "5y",
+        project_count: 20,
+        rating: 4.8,
+        skill_avg: 9.2,
+        year: "3rd",
+    },
+    {
+        name: "Charlie Brown",
+        experience: "2y",
+        project_count: 8,
+        rating: 4.2,
+        skill_avg: 7.9,
+        year: "1st",
+    },
+    {
+        name: "David Wilson",
+        experience: "4y",
+        project_count: 15,
+        rating: 4.6,
+        skill_avg: 8.5,
+        year: "2nd",
     },
 ]

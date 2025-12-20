@@ -15,3 +15,9 @@ export const projectCardGradient: Record<ProjectCardProps["type"], LinearGradien
     ai: ['#ffffff', '#fdfcfe', '#fbf9fc', '#faf6fa', '#f9f3f7', '#f9e8f1', '#faddea', '#fbd2e1', '#febcd0', '#ffa5bd', '#ff8ea7', '#ff758f'],
     game: ['#ffffff', '#fdfdfe', '#fafcfd', '#f6fafc', '#f3f9fa', '#def2f6', '#c8ecf1', '#b1e5ec', '#7fd5ef', '#48c3f6', '#00aefd', '#0496ff'],
 }
+
+
+export const memberCardGradient: Record<"admin" | "user", LinearGradientProps['colors']> = {
+    admin: ['#defdfa', '#d5f9f5', '#ccf4f0', '#c2f0eb', '#b9ebe6', '#b1eae4', '#a8e8e2', '#9fe7e0', '#94e8e0', '#87eae1', '#79ebe1', '#6aece1'],
+    user: ['#f9f9f9', '#f9f9f9', '#f9f9f9', '#f9f9f9', '#f9f9f9', '#f7f7f7', '#f4f4f4', '#f2f2f2', '#edeced', '#e7e7e7', '#e2e1e2', '#dddcdc']
+}

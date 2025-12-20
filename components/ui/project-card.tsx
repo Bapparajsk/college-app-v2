@@ -78,6 +78,7 @@ const ProjectCard: FC<ProjectCardProps> = ({ title, subTitle, tags, rating, memb
                             </View>
                             <Text className='font-poppins-medium text-gray-500 text-lg'>Rating</Text>
                         </View>
+                        <View className='h-2/4 w-0.5 rounded-full bg-white/50'/>
                         <View className='w-auto h-full justify-center items-center'>
                             <View className='flex-row items-center gap-1'>
                                 <UsersRoundIcon size={22} color='#000000' />
@@ -85,6 +86,7 @@ const ProjectCard: FC<ProjectCardProps> = ({ title, subTitle, tags, rating, memb
                             </View>
                             <Text className='font-poppins-medium text-gray-500 text-lg'>Member</Text>
                         </View>
+                        <View className='h-2/4 w-0.5 rounded-full bg-white/50'/>
                         <View className='w-auto h-full justify-center items-center'>
                             <View className='flex-row items-center gap-1'>
                                 <AtSignIcon size={22} color='#000000' />
