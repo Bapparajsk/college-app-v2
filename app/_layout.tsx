@@ -18,7 +18,7 @@ export default function RootLayout() {
                     }}/>
                     <Stack.Screen name={"college-profile"} options={{
                         headerShown: false,
-                        animation: "slide_from_right"
+                        animation: "fade"
                     }}/>
                 </Stack>
             </FontProvider>

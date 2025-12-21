@@ -9,10 +9,10 @@ export default function TabsLayout() {
                 headerShown: false,
             }}
         >
-            <Tabs.Screen name="(home)" options={{ title: "Home", animation: "shift" }} />
-            <Tabs.Screen name="routing" options={{ title: "Routing", animation: "none" }}/>
-            <Tabs.Screen name="community" options={{ title: "Community", animation: "none" }}/>
-            <Tabs.Screen name="setting" options={{ title: "Setting", animation: "shift" }}/>
+            <Tabs.Screen name="(home)" options={{ title: "Home", animation: "fade" }} />
+            <Tabs.Screen name="routing" options={{ title: "Routing", animation: "fade" }}/>
+            <Tabs.Screen name="community" options={{ title: "Community", animation: "fade" }}/>
+            <Tabs.Screen name="setting" options={{ title: "Setting", animation: "fade" }}/>
         </Tabs>
     );
 } 
