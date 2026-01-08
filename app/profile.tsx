@@ -22,7 +22,6 @@ export default function Profile() {
     return (
         <>
             <Header scrollY={scrollY} />
-
             <Animated.FlatList
                 data={[0]}
                 keyExtractor={(item, index) => index.toString()}

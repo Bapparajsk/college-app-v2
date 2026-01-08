@@ -1,21 +1,40 @@
-import { gradient } from "@/theme/linear-gradients";
-import { LinearGradient, } from "expo-linear-gradient";
-import { Text } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { ScrollView, View } from 'react-native';
+import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 
-export default function SettingPage() {
+const COLORS = ['red', 'green', 'blue', 'purple', 'orange', 'cyan'];
+
+export default function App() {
+    const native = Gesture.Native();
+
     return (
-        <LinearGradient
-            className={"flex-1"}
-            colors={gradient.HomePage}
-        >
-            <SafeAreaView className={"flex-1"}>
-                <Text>
+        <GestureDetector gesture={native}>
+            <ScrollView style={{ flex: 1 }}>
+                <ScrollableContent scrollGesture={native} />
+            </ScrollView>
+        </GestureDetector>
+    );
+}
 
-                    Profile Page
-                </Text>
+function ScrollableContent({ scrollGesture } : { scrollGesture: any }) {
+    return (
+        <View>
+            {COLORS.map((color) => (
+                <Rectangle key={color} color={color} scrollGesture={scrollGesture} />
+            ))}
+        </View>
+    );
+}
 
-            </SafeAreaView>
-        </LinearGradient>
+function Rectangle({ color, scrollGesture }: { color: any,scrollGesture: any  }) {
+    const pan = Gesture.Pan().blocksExternalGesture(scrollGesture);
+
+    return (
+        <View
+            key={color}
+            style={{ width: '100%', height: 250, backgroundColor: color }}>
+            <GestureDetector gesture={pan}>
+                <View style={{ width: '100%', height: 50, backgroundColor: 'black' }} />
+            </GestureDetector>
+        </View>
     );
 }
