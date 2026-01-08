@@ -1,5 +1,5 @@
 
-type ButtonKeys = 'primary' | 'secondary' | 'success' | 'error' | 'warning' | 'default';
+type ButtonKeys = 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'default';
 
 export type ButtonVariants = {
     [key in ButtonKeys]: {

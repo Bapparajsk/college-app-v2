@@ -36,7 +36,7 @@ export const buttonVariants: ButtonVariants = {
         pressed: '#0e8f3e',
         text: colors.black,
     },
-    error: {
+    danger: {
         default: colors.danger,
         hovered: '#e02550',
         pressed: '#c21840',
