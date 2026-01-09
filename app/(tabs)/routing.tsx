@@ -2,9 +2,11 @@ import Header from "@/components/header/header";
 import RoutingList from "@/components/routing/routing-list";
 import TeacherSeason from "@/components/routing/teacher-season";
 import { AnimatedButton } from "@/components/ui/button";
+import { useBottomSheet } from "@/providers/bottomsheet";
 import { formatDay, getCurrentWeekDays, isToday } from "@/units/date";
+import { useRouter } from "expo-router";
 import { ChevronDownIcon } from "lucide-react-native";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -12,6 +14,20 @@ import { SafeAreaView } from "react-native-safe-area-context";
 export default function HomePage() {
 
     const data = useMemo(() => getCurrentWeekDays(), []);
+    const [sheetId, setSheetId] = useState<string | null>(null);
+    const { expand, show } = useBottomSheet();
+
+    const router = useRouter();
+
+    useEffect(() => {
+        // Store the sheet ID returned by show()
+        const id = show(
+            <View>
+                <Text>Hello from Bottom Sheet!</Text>
+            </View>
+        );
+        setSheetId(id);
+    }, []);
 
     return (
         <SafeAreaView className={"flex-1 bg-[#E1E6E9]"}>
@@ -22,7 +38,9 @@ export default function HomePage() {
                     <Text className="font-inter-semibold text-2xl">
                         Class Schedule
                     </Text>
-                    <AnimatedButton scale={0.99}>
+                    <AnimatedButton scale={0.99} onPress={() => {
+                        router.push('/subjects');
+                    }}>
                         <View className="px-3 py-2 bg-white rounded-full">
                             <View className="flex-row items-center gap-1">
                                 <Text className="font-inter leading-none">

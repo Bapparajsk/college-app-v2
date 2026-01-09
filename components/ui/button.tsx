@@ -172,7 +172,7 @@ export const AnimatedButton: FC<AnimatedButtonProps> = ({
             onPressOut={onPressOut}
             onPress={handlePress}
             disabled={disabled}
-            activeOpacity={1} // We handle opacity in our animation
+            activeOpacity={1}
             style={[animatedStyle]}
             accessible={true}
             accessibilityRole="button"
@@ -182,3 +182,5 @@ export const AnimatedButton: FC<AnimatedButtonProps> = ({
         </AnimatedTouchableOpacity>
     );
 };
+
+console.log(shadows.md);

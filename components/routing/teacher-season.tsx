@@ -1,3 +1,4 @@
+import { shadows } from '@/theme/shadow'
 import { CheckIcon, CircleGaugeIcon, HouseIcon } from 'lucide-react-native'
 import React from 'react'
 import { Image, Text, View } from 'react-native'
@@ -32,7 +33,7 @@ export default function TeacherSeason() {
                     </CircularProgress>
                 </View>
             </View>
-            <View className="mt-4 w-full h-52 bg-[#BDE0FE] rounded-[30px] overflow-hidden p-3 items-start">
+            <View style={shadows.md} className="mt-4 w-full h-52 bg-[#BDE0FE] rounded-[30px] overflow-hidden p-3 items-start">
                 <View className="w-auto h-20">
                     <View className="w-52 h-16 bg-white rounded-full p-1 flex-row items-center">
                         <View className="size-14 bg-[#BDE0FE] rounded-full mr-3 items-center justify-center">

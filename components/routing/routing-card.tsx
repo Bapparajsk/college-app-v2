@@ -1,11 +1,13 @@
+import { getGradientColors } from '@/units/color'
 import { LinearGradient } from 'expo-linear-gradient'
-import { FlaskConicalIcon } from 'lucide-react-native'
+import { ClockIcon, HomeIcon } from 'lucide-react-native'
 import React from 'react'
 import { Text, View } from 'react-native'
 import { AnimatedButton } from '../ui/button'
 import Chip from '../ui/chip'
+import { RoutingDetails } from './routing-details'
 
-export default function RoutingCard() {
+export default function RoutingCard({ subject, classType, classTypeIcon: ClassTypeIcon, room, icon: Icon, time, color, teacher, topics, isExpanded }: RoutingDetails) {
     return (
         <AnimatedButton>
             <View className='mb-3 w-full h-[85px] flex-row overflow-hidden border border-stone-600/30'
@@ -20,30 +22,43 @@ export default function RoutingCard() {
                     <View className='w-full h-full flex-row items-center justify-between'>
                         <View className='flex-row gap-2'>
                             <View className='size-24 p-1.5'>
-                                <View className='size-full rounded-full bg-[#00d86530] border border-[#00D86660] items-center justify-center'>
-                                    <FlaskConicalIcon color={"#00D866"} />
+                                <View style={{ backgroundColor: `${color}30`, borderColor: `${color}60` }} className='size-full rounded-full border items-center justify-center'>
+                                    <LinearGradient
+                                        colors={getGradientColors(color || "#000000") as any}
+                                        start={{ x: 0, y: 0 }} 
+                                        end={{ x: 1, y: 1 }}
+                                        className='size-full items-center justify-center'
+                                        style={{ borderRadius: 9999 }}
+                                    >
+                                        <Icon color={color} size={30}/>
+                                    </LinearGradient>
                                 </View>
                             </View>
                             <View className='w-auto justify-center'>
                                 <Text className='font-poppins-semibold text-xl'>
-                                    Chemistry Lab
-                                </Text>
-                                <Text className='font-inter text-sm text-stone-500'>
-                                    11:00 AM
+                                    {subject}
                                 </Text>
                                 <View className='flex-row mt-1'>
                                     <Chip
-                                        title="Laboratory"
+                                        title="11:00 AM"
+                                        className="mr-2"
+                                        Icon={<ClockIcon size={12} color="#71717a" />}
+                                        color="#a8a29e"
+                                    />
+                                    <Chip
+                                        title={classType}
                                         className="mr-2"
                                         color="#a8a29e"
+                                        Icon={<ClassTypeIcon size={12} color="#71717a" />}
+                                    />
+                                    <Chip
+                                        title={`Room: ${room}`}
+                                        className="mr-2"
+                                        color="#a8a29e"
+                                        Icon={<HomeIcon size={12} color="#71717a" />}
                                     />
                                 </View>
                             </View>
-                        </View>
-                        <View>
-                            <Text className='font-inter-semibold text-sm text-stone-500 mr-4'>
-                                Room: Lab-3
-                            </Text>
                         </View>
                     </View>
                 </LinearGradient>
