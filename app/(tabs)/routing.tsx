@@ -1,56 +1,25 @@
-import CalendarGrid from "@/components/calender/calendar-grid";
-import CalendarHeader from "@/components/calender/calendar-header";
 import Header from "@/components/header/header";
+import DayButton from "@/components/routing/day-button";
 import RoutingList from "@/components/routing/routing-list";
 import TeacherSeason from "@/components/routing/teacher-season";
-import { AnimatedButton } from "@/components/ui/button";
-import { useCalendar } from "@/hooks/useCalender";
-import { useBottomSheet } from "@/providers/bottomsheet";
-import { formatDay, getCurrentWeekDays, isToday } from "@/units/date";
-import { useRouter } from "expo-router";
-import { ChevronDownIcon } from "lucide-react-native";
-import { useMemo, useState } from "react";
+import { shadows } from "@/theme/shadow";
+import { DayTypes, getCurrentWeekDays, getDayAndYear, isToday } from "@/units/date";
+import { CalendarRangeIcon } from "lucide-react-native";
+import { useCallback, useMemo, useState } from "react";
 import { ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 
 export default function HomePage() {
 
+    const [currDay, setCurrDay] = useState<DayTypes | undefined>(undefined);
+
     const data = useMemo(() => getCurrentWeekDays(), []);
-    const [sheetId, setSheetId] = useState<string | null>(null);
-    const { expand, show } = useBottomSheet();
+    const todayInfo = useMemo(() => getDayAndYear(), []);
 
-    const router = useRouter();
-
-    const {
-        currentDate,
-        selectedDate,
-        viewMode,
-        setViewMode,
-        calendarDays,
-        navigateMonth,
-        navigateWeek,
-        navigateDay,
-        selectDate,
-        addEvent,
-    } = useCalendar();
-
-    const handleNavigate = (direction: 'prev' | 'next') => {
-        console.log(direction);
-
-        switch (viewMode) {
-            case 'month':
-                navigateMonth(direction);
-                break;
-            case 'week':
-                navigateWeek(direction);
-                break;
-            case 'day':
-                navigateDay(direction);
-                break;
-        }
-    }
-
+    const handleDayPress = useCallback((day: DayTypes) => {
+        setCurrDay(day);
+    }, []);
 
     return (
         <SafeAreaView className={"flex-1 bg-[#E1E6E9]"}>
@@ -61,59 +30,31 @@ export default function HomePage() {
                     <Text className="font-inter-semibold text-2xl">
                         Class Schedule
                     </Text>
-                    <AnimatedButton scale={0.99} onPress={() => {
-                        router.push('/subjects');
-                    }}>
-                        <View className="px-3 py-2 bg-white rounded-full">
-                            <View className="flex-row items-center gap-1">
-                                <Text className="font-inter leading-none">
-                                    Dec 2025
-                                </Text>
-                                <ChevronDownIcon size={20} />
-                            </View>
+                    <View style={shadows.sm} className="px-3 py-2 bg-white rounded-full">
+                        <View className="flex-row items-center gap-1">
+                            <CalendarRangeIcon size={16} />
+                            <Text className="font-inter">
+                                {todayInfo.day} {todayInfo.year}
+                            </Text>
                         </View>
-                    </AnimatedButton>
+                    </View>
                 </View>
                 <View className="w-full h-[4.5rem] px-4 pb-2 flex-row items-center bg-[#E1E6E9]">
                     {
                         data.map((item, index) => {
-                            const today = isToday(item.date);
+                            const isSelected = currDay === item.day || (currDay === undefined && isToday(item.date));
                             return (
-                                <AnimatedButton key={index}>
-                                    <View
-                                        style={{ backgroundColor: today ? "#000000" : "#FFFFFF" }}
-                                        className="w-14 h-full mx-1 rounded-3xl items-center justify-center"
-                                    >
-                                        <Text
-                                            style={{ color: today ? "#FFFFFF" : "#000000" }}
-                                            className="font-inter-semibold text-sm"
-                                        >
-                                            {formatDay(item.day)}
-                                        </Text>
-                                        <Text
-                                            style={{ color: today ? "#FFFFFF" : "#6B7280" }}
-                                            className="font-inter text-sm "
-                                        >
-                                            {item.date.day}
-                                        </Text>
-                                    </View>
-                                </AnimatedButton>
+                                <DayButton
+                                    key={index}
+                                    item={item}
+                                    isSelected={isSelected}
+                                    onPress={handleDayPress}
+                                />
                             );
                         })
                     }
                 </View>
-                <RoutingList />
-                <CalendarHeader
-                    currentDate={currentDate}
-                    viewMode={viewMode}
-                    onViewModeChange={setViewMode}
-                    onNavigate={handleNavigate}
-                />
-                <CalendarGrid
-                    days={calendarDays}
-                    onSelectDate={selectDate}
-                    viewMode={viewMode}
-                />
+                <RoutingList day={currDay}/>
             </ScrollView>
         </SafeAreaView>
     );

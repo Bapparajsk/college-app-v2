@@ -1,5 +1,5 @@
 // Define the return type
-type DayTypes = 'Monday' | 'Tuesday'| 'Wednesday'| 'Thursday' | 'Friday' | 'Saturday' | 'Sunday';
+export type DayTypes = 'Monday' | 'Tuesday'| 'Wednesday'| 'Thursday' | 'Friday' | 'Saturday' | 'Sunday';
 
 type DayDateInfo = {
     day: DayTypes;
@@ -12,6 +12,9 @@ type DayDateInfo = {
 
 // Helper function to pad single digits
 const padZero = (num: number): string => num.toString().padStart(2, '0');
+
+// Array of days for reference
+const daysOfWeek:DayTypes[] = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 // Even more concise version
 export function getCurrentWeekDays(): DayDateInfo[] {
@@ -45,7 +48,7 @@ export function getCurrentWeekDays(): DayDateInfo[] {
 // Function to get today's DayDateInfo
 export function getTodayInfo(): DayDateInfo {
     const today = new Date();
-    const daysOfWeek:DayTypes[] = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    
     
     return {
         day: daysOfWeek[today.getDay()],
@@ -78,4 +81,12 @@ export function isDateInCurrentWeek(dateToCheck: Date): boolean {
     return weekDays.some(day => 
         `${day.date.day}-${day.date.month}-${day.date.year}` === checkDateStr
     );
+}
+
+export function getDayAndYear() {
+    const today = new Date();
+    const day = daysOfWeek[today.getDay()];
+    const year = today.getFullYear().toString();
+    
+    return { day, year };
 }

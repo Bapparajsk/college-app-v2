@@ -1,3 +1,4 @@
+import { DayTypes } from "@/units/date";
 import { Atom, Beaker, BookOpen, BowArrow, Calculator, FlaskConical, LibraryBig, LucideIcon, MessageSquareText, Unplug } from "lucide-react-native";
 
 export type RoutingDetails = {
@@ -14,10 +15,10 @@ export type RoutingDetails = {
 }
 
 
-export type Day = "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday" | "Sunday";
+// export type Day = "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday" | "Sunday";
 
 
-export const routingDetails: Record<Day, RoutingDetails[]> = {
+export const routingDetails: Record<DayTypes, RoutingDetails[]> = {
     "Monday": [
         {
             subject: "Applied Physics - 1",
@@ -244,15 +245,15 @@ export const routingDetails: Record<Day, RoutingDetails[]> = {
             color: "#F1BA00",
         },
     ]
-} as Record<Day, RoutingDetails[]>;
+} as Record<DayTypes, RoutingDetails[]>;
 
 
-export const getTodaysRoutine = (d?: Day) => {
+export const getTodaysRoutine = (d?: DayTypes | null) => {
     if(d) return routingDetails[d] || [];
 
-    const days: Day[] = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const days: DayTypes[] = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const today = new Date();
-    const dayName = days[today.getDay()] as Day;
+    const dayName = days[today.getDay()] as DayTypes;
 
     if (dayName === "Saturday" || dayName === "Sunday") {
         return [];
