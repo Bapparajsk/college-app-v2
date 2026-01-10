@@ -1,12 +1,15 @@
+import CalendarGrid from "@/components/calender/calendar-grid";
+import CalendarHeader from "@/components/calender/calendar-header";
 import Header from "@/components/header/header";
 import RoutingList from "@/components/routing/routing-list";
 import TeacherSeason from "@/components/routing/teacher-season";
 import { AnimatedButton } from "@/components/ui/button";
+import { useCalendar } from "@/hooks/useCalender";
 import { useBottomSheet } from "@/providers/bottomsheet";
 import { formatDay, getCurrentWeekDays, isToday } from "@/units/date";
 import { useRouter } from "expo-router";
 import { ChevronDownIcon } from "lucide-react-native";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -19,15 +22,35 @@ export default function HomePage() {
 
     const router = useRouter();
 
-    useEffect(() => {
-        // Store the sheet ID returned by show()
-        const id = show(
-            <View>
-                <Text>Hello from Bottom Sheet!</Text>
-            </View>
-        );
-        setSheetId(id);
-    }, []);
+    const {
+        currentDate,
+        selectedDate,
+        viewMode,
+        setViewMode,
+        calendarDays,
+        navigateMonth,
+        navigateWeek,
+        navigateDay,
+        selectDate,
+        addEvent,
+    } = useCalendar();
+
+    const handleNavigate = (direction: 'prev' | 'next') => {
+        console.log(direction);
+
+        switch (viewMode) {
+            case 'month':
+                navigateMonth(direction);
+                break;
+            case 'week':
+                navigateWeek(direction);
+                break;
+            case 'day':
+                navigateDay(direction);
+                break;
+        }
+    }
+
 
     return (
         <SafeAreaView className={"flex-1 bg-[#E1E6E9]"}>
@@ -80,6 +103,17 @@ export default function HomePage() {
                     }
                 </View>
                 <RoutingList />
+                <CalendarHeader
+                    currentDate={currentDate}
+                    viewMode={viewMode}
+                    onViewModeChange={setViewMode}
+                    onNavigate={handleNavigate}
+                />
+                <CalendarGrid
+                    days={calendarDays}
+                    onSelectDate={selectDate}
+                    viewMode={viewMode}
+                />
             </ScrollView>
         </SafeAreaView>
     );
