@@ -7,19 +7,19 @@ import React, { useEffect } from 'react'
 import { Text, View } from 'react-native'
 import { AnimatedButton } from '../ui/button'
 import Chip from '../ui/chip'
-import ClassDetailsCard from './class-details-card'
+import ClassBottomSheet from './class-bottom-sheet'
 import { RoutingDetails } from './routing-details'
 
-export default function RoutingCard({ subject, classType, classTypeIcon: ClassTypeIcon, room, icon: Icon, time, color }: RoutingDetails) {
+export default function RoutingCard(props: RoutingDetails) {
     const { show, expand, close } = useManagedBottomSheet();
+    const { subject, classType, classTypeIcon: ClassTypeIcon, room, icon: Icon, time, color } = props;
 
 
     useEffect(() => {
-
         show(
-            <ClassDetailsCard/>,
+            <ClassBottomSheet {...props} />,
             {
-                snapPoints: ['80%'],
+                snapPoints: ['50%'],
                 enablePanDownToClose: true,
                 enableHandlePanningGesture: false,
             }
@@ -68,7 +68,7 @@ export default function RoutingCard({ subject, classType, classTypeIcon: ClassTy
                                         color="#a8a29e"
                                     />
                                     <Chip
-                                        title={classType}
+                                        title={classType || "N/A"}
                                         className="mr-2"
                                         color="#a8a29e"
                                         Icon={<ClassTypeIcon size={12} color="#71717a" />}
@@ -86,5 +86,5 @@ export default function RoutingCard({ subject, classType, classTypeIcon: ClassTy
                 </LinearGradient>
             </View>
         </AnimatedButton>
-    )
+    );
 }

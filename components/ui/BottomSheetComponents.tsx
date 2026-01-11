@@ -29,7 +29,7 @@ export const BottomSheetContent: React.FC<{
     return (
         <BottomSheetView style={[styles.container, contentContainerStyle]}>
             <View className='w-full h-auto items-center'>
-                <View className='w-20 h-1.5 bg-stone-800 rounded-full my-2' />
+                <View className='w-20 h-1.5 bg-stone-600 rounded-full my-2' />
             </View>
             {children}
         </BottomSheetView>

@@ -64,6 +64,7 @@ export const useManagedBottomSheet = () => {
         show: showSheet,
         close: useCallback(() => {            
             if (sheetIdRef.current) {
+                console.log("close-2");
                 close(sheetIdRef.current);
                 sheetIdRef.current = null;
             }
