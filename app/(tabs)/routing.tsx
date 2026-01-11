@@ -2,6 +2,7 @@ import Header from "@/components/header/header";
 import DayButton from "@/components/routing/day-button";
 import RoutingList from "@/components/routing/routing-list";
 import TeacherSeason from "@/components/routing/teacher-season";
+import { AnimatedButton } from "@/components/ui/button";
 import { shadows } from "@/theme/shadow";
 import { DayTypes, getCurrentWeekDays, getDayAndYear, isToday } from "@/units/date";
 import { CalendarRangeIcon } from "lucide-react-native";
@@ -30,14 +31,16 @@ export default function HomePage() {
                     <Text className="font-inter-semibold text-2xl">
                         Class Schedule
                     </Text>
-                    <View style={shadows.sm} className="px-3 py-2 bg-white rounded-full">
-                        <View className="flex-row items-center gap-1">
-                            <CalendarRangeIcon size={16} />
-                            <Text className="font-inter">
-                                {todayInfo.day} {todayInfo.year}
-                            </Text>
+                    <AnimatedButton hitSlop={20} onPress={() => setCurrDay(undefined)}>
+                        <View style={shadows.sm} className="px-3 py-2 bg-white rounded-full">
+                            <View className="flex-row items-center gap-1">
+                                <CalendarRangeIcon size={16} />
+                                <Text className="font-inter">
+                                    {todayInfo.day} {todayInfo.year}
+                                </Text>
+                            </View>
                         </View>
-                    </View>
+                    </AnimatedButton>
                 </View>
                 <View className="w-full h-[4.5rem] px-4 pb-2 flex-row items-center bg-[#E1E6E9]">
                     {
@@ -54,7 +57,7 @@ export default function HomePage() {
                         })
                     }
                 </View>
-                <RoutingList day={currDay}/>
+                <RoutingList day={currDay} />
             </ScrollView>
         </SafeAreaView>
     );

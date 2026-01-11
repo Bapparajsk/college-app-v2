@@ -49,7 +49,6 @@ export function getCurrentWeekDays(): DayDateInfo[] {
 export function getTodayInfo(): DayDateInfo {
     const today = new Date();
     
-    
     return {
         day: daysOfWeek[today.getDay()],
         date: {
