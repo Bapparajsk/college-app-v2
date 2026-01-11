@@ -14,10 +14,6 @@ export type RoutingDetails = {
     isExpanded?: boolean
 }
 
-
-// export type Day = "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday" | "Sunday";
-
-
 export const routingDetails: Record<DayTypes, RoutingDetails[]> = {
     "Monday": [
         {

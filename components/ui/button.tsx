@@ -3,7 +3,7 @@ import { buttonVariants } from "@/theme/theme";
 import { ButtonKeys } from "@/types/buttonVariants";
 import { useRouter } from "expo-router";
 import { FC } from "react";
-import { GestureResponderEvent, Pressable, PressableProps, PressableStateCallbackType, TouchableOpacity, View, ViewProps } from "react-native";
+import { GestureResponderEvent, Pressable, PressableProps, PressableStateCallbackType, View, ViewProps } from "react-native";
 import Animated, { useAnimatedStyle, useSharedValue, withSpring } from "react-native-reanimated";
 
 type ButtonProps = PressableProps & {
@@ -21,7 +21,7 @@ type ButtonWrapperProps = ViewProps & {
     rounded?: string;
 }
 
-const AnimatedTouchableOpacity = Animated.createAnimatedComponent(TouchableOpacity);
+const AnimatedTouchableOpacity = Animated.createAnimatedComponent(Pressable);
 
 export default function Button({ children, className, shadow = "md", href, onPress, ...rest }: ButtonProps) {
 
@@ -72,7 +72,8 @@ export const ButtonWrapper = ({ children, variant = "default", hovered, pressed,
 
 export interface AnimatedButtonProps {
     className?: string;
-    children: React.ReactNode;
+    children: React.ReactNode | ButtonProps['children'];
+    style?: View['props']['style'];
     onPress?: () => void;
     disabled?: boolean;
     scale?: number; // Press scale factor (default: 0.95)
@@ -84,11 +85,13 @@ export interface AnimatedButtonProps {
     };
     hoverScale?: number; // Optional hover effect for web
     activeOpacity?: number; // Opacity when pressed
+    hitSlop?: number | { top: number; bottom: number; left: number; right: number; };
 }
 
 export const AnimatedButton: FC<AnimatedButtonProps> = ({
     className,
     children,
+    style,
     onPress,
     disabled = false,
     scale = 0.95,
@@ -96,6 +99,7 @@ export const AnimatedButton: FC<AnimatedButtonProps> = ({
     springConfig = { damping: 15, stiffness: 150, mass: 1 },
     hoverScale = 1.02,
     activeOpacity = 0.8,
+    hitSlop,
 }) => {
     const activePress = useSharedValue(false);
     const progress = useSharedValue(0);
@@ -116,12 +120,6 @@ export const AnimatedButton: FC<AnimatedButtonProps> = ({
 
     const handlePress = () => {
         if (disabled || !onPress) return;
-
-        // Optional: Add haptic feedback here
-        // if (Platform.OS !== 'web') {
-        //   ReactNativeHapticFeedback.trigger('impactLight');
-        // }
-
         onPress();
     };
 
@@ -172,15 +170,15 @@ export const AnimatedButton: FC<AnimatedButtonProps> = ({
             onPressOut={onPressOut}
             onPress={handlePress}
             disabled={disabled}
-            activeOpacity={1}
-            style={[animatedStyle]}
+            // activeOpacity={1}
+            style={[animatedStyle, style]}
             accessible={true}
             accessibilityRole="button"
             accessibilityState={{ disabled }}
+            hitSlop={hitSlop}
         >
-            {children}
+            {/* { typeof children === 'function' ? children({ pressed: activePress }) : children } */}
+            {({ hovered, pressed }) => typeof children === 'function' ? children({ pressed, hovered }) : children}
         </AnimatedTouchableOpacity>
     );
 };
-
-console.log(shadows.md);

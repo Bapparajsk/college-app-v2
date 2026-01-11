@@ -90,3 +90,22 @@ export function getDayAndYear() {
     
     return { day, year };
 }
+
+export function formatHourTo12(hour: number): string {
+    if (hour < 0 || hour > 24) {
+        throw new Error("Hour must be between 0 and 24");
+    }
+
+    // Separate hours and minutes
+    const baseHour = Math.floor(hour);
+    const minutes = Math.round((hour - baseHour) * 60);
+
+    // Convert to 12-hour format
+    const h = baseHour % 12 === 0 ? 12 : baseHour % 12;
+    const suffix = baseHour >= 12 && baseHour < 24 ? "PM" : "AM";
+
+    // Format minutes properly
+    const m = minutes.toString().padStart(2, "0");
+
+    return `${h}:${m} ${suffix}`;
+}

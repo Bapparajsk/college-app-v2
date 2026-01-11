@@ -6,8 +6,8 @@ export const shadows = {
             height: 1,
         },
         shadowOpacity: 0.18,
-        shadowRadius: 1.00,
-        elevation: 1,
+        shadowRadius: 3.00,
+        elevation: 3,
     },
     md: {
         shadowColor: "#000",

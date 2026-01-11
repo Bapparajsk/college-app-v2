@@ -1,15 +1,37 @@
+import { useManagedBottomSheet } from '@/hooks/useBottomSheetInstance'
 import { getGradientColors } from '@/units/color'
+import { formatHourTo12 } from '@/units/date'
 import { LinearGradient } from 'expo-linear-gradient'
 import { ClockIcon, HomeIcon } from 'lucide-react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Text, View } from 'react-native'
 import { AnimatedButton } from '../ui/button'
 import Chip from '../ui/chip'
+import ClassDetailsCard from './class-details-card'
 import { RoutingDetails } from './routing-details'
 
-export default function RoutingCard({ subject, classType, classTypeIcon: ClassTypeIcon, room, icon: Icon, time, color, teacher, topics, isExpanded }: RoutingDetails) {
+export default function RoutingCard({ subject, classType, classTypeIcon: ClassTypeIcon, room, icon: Icon, time, color }: RoutingDetails) {
+    const { show, expand, close } = useManagedBottomSheet();
+
+
+    useEffect(() => {
+
+        show(
+            <ClassDetailsCard/>,
+            {
+                snapPoints: ['80%'],
+                enablePanDownToClose: true,
+                enableHandlePanningGesture: false,
+            }
+        );
+
+        return () => {
+            close();
+        }
+    },[])
+
     return (
-        <AnimatedButton>
+        <AnimatedButton onPress={expand}>
             <View className='mb-3 w-full h-[85px] flex-row overflow-hidden border border-stone-600/30'
                 style={{ borderRadius: 9999 }}
             >
@@ -40,7 +62,7 @@ export default function RoutingCard({ subject, classType, classTypeIcon: ClassTy
                                 </Text>
                                 <View className='flex-row mt-1'>
                                     <Chip
-                                        title="11:00 AM"
+                                        title={formatHourTo12(time.start)}
                                         className="mr-2"
                                         Icon={<ClockIcon size={12} color="#71717a" />}
                                         color="#a8a29e"

@@ -47,7 +47,7 @@ export default function CircularProgress({
     });
 
     return (
-        <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>
+        <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center'}}>
             <Svg width={size} height={size}>
                 <Circle
                     cx={size / 2}

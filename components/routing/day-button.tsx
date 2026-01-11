@@ -1,4 +1,5 @@
 import { AnimatedButton } from "@/components/ui/button";
+import { shadows } from "@/theme/shadow";
 import { DayTypes, formatDay } from "@/units/date";
 import React, { memo } from "react";
 import { Text, View } from "react-native";
@@ -38,7 +39,8 @@ const DayButton = memo(function DayButton({
                 className="w-full h-full rounded-3xl items-center justify-center"
                 style={{
                     backgroundColor: isSelected ? "#000000" : "#FFFFFF",
-                    transform: [{ scale: isSelected ? 0.95 : 1 }]
+                    transform: [{ scale: isSelected ? 0.95 : 1 }],
+                    ...shadows.md
                 }}
             >
                 <Text
