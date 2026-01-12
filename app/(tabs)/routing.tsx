@@ -11,7 +11,7 @@ import { ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 
-export default function HomePage() {
+export default function RoutingPage() {
 
     const [currDay, setCurrDay] = useState<DayTypes | undefined>(undefined);
 

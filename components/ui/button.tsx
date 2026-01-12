@@ -170,7 +170,6 @@ export const AnimatedButton: FC<AnimatedButtonProps> = ({
             onPressOut={onPressOut}
             onPress={handlePress}
             disabled={disabled}
-            // activeOpacity={1}
             style={[animatedStyle, style]}
             accessible={true}
             accessibilityRole="button"

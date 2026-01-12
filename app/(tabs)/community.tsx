@@ -1,21 +1,32 @@
-import { gradient } from "@/theme/linear-gradients";
-import { LinearGradient, } from "expo-linear-gradient";
-import { Text } from "react-native";
+import CommunityCard from "@/components/community/community-card";
+import InputButton from "@/components/community/input-button";
+import Header from "@/components/header/header";
+import { ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-export default function ProfilePage() {
+export default function CommunityPage() {
     return (
-        <LinearGradient
-            className={"flex-1"}
-            colors={gradient.HomePage}
-        >
-            <SafeAreaView className={"flex-1"}>
-                <Text>
-
-                    Profile Page
-                </Text>
-
-            </SafeAreaView>
-        </LinearGradient>
+        <SafeAreaView className={"flex-1"}>
+            <Header />
+            <ScrollView className="flex-1 px-3">
+                <View className="w-full h-auto mt-4 max-w-[90%] px-2">
+                    <Text className="text-4xl font-poppins-semibold leading-tight">
+                        Share Your Idea with the Community!
+                    </Text>
+                </View>
+                <View className="w-full h-auto mt-6">
+                    <InputButton />
+                </View>
+                <CommunityCard/>
+                <CommunityCard/>
+                <CommunityCard/>
+                <CommunityCard/>
+                <CommunityCard/>
+                <CommunityCard/>
+                <CommunityCard/>
+                <CommunityCard/>
+                <CommunityCard/>
+            </ScrollView>
+        </SafeAreaView>
     );
 }
