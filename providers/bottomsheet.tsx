@@ -1,9 +1,9 @@
 // BottomSheetContext.tsx - Fixed Version
 import {
-    BottomSheetBackdrop,
-    BottomSheetBackdropProps,
-    BottomSheetModal,
-    BottomSheetModalProvider,
+  BottomSheetBackdrop,
+  BottomSheetBackdropProps,
+  BottomSheetModal,
+  BottomSheetModalProvider,
 } from '@gorhom/bottom-sheet';
 import React, { createContext, useCallback, useContext, useRef, useState } from 'react';
 
@@ -281,6 +281,7 @@ export const BottomSheetProvider: React.FC<{ children: React.ReactNode }> = ({ c
             keyboardBehavior={activeSheet.config.keyboardBehavior}
             keyboardBlurBehavior={activeSheet.config.keyboardBlurBehavior}
             android_keyboardInputMode="adjustResize"
+            
           >
             {activeSheet.content}
           </BottomSheetModal>

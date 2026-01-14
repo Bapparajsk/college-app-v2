@@ -1,11 +1,31 @@
+import { useManagedBottomSheet } from '@/hooks/useBottomSheetInstance'
 import { shadows } from '@/theme/shadow'
 import { colors } from '@/theme/theme'
 import { Share2Icon, ThumbsUpIcon, UsersRoundIcon } from 'lucide-react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Image, Text, View } from 'react-native'
+import { BottomSheetContent } from '../ui/BottomSheetComponents'
 import { AnimatedButton } from '../ui/button'
 
 export default function CommunityCard() {
+
+    const { show, expand, close } = useManagedBottomSheet();
+
+    useEffect(() => {
+        show(
+            <BottomSheetContent>
+                <View className="w-full h-[90%] bg-pink-400">
+                    <Text className="text-white">Hello from Bottom Sheet!</Text>
+                </View>
+                
+            </BottomSheetContent>,
+            {
+                snapPoints: ["90%"],
+                // enablePanDownToClose: true,
+            }
+        );
+    },[])
+
     return (
         <View style={shadows.sm} className="w-full h-auto bg-white mb-2 rounded-3xl py-3 px-5">
             <View className="w-full h-16 flex-row items-center justify-between">
@@ -45,7 +65,11 @@ export default function CommunityCard() {
                 </Text>
             </View>
             <View className="w-full h-16 flex-row items-center justify-between">
-                <AnimatedButton className="flex-grow">
+                <AnimatedButton className="flex-grow" onPress={() => {
+                    console.log("press");
+                    expand();
+
+                }}>
                     <View className="w-full h-full flex-row items-center gap-2 bg-gray-200 rounded-full">
                         <View className="w-auto h-full flex-row items-center gap-1.5">
                             <View className="size-16">
@@ -76,7 +100,10 @@ export default function CommunityCard() {
                         </View>
                     )}
                 </AnimatedButton>
-                <AnimatedButton scale={1}>
+                <AnimatedButton scale={1} onPress={() => {
+                    // console.log("press");
+                    
+                }}>
                     {({ pressed }) => (
                         <View className="rounded-full overflow-hidden border border-transparent">
                             <View style={{ backgroundColor: pressed ? "#e5e7eb" : "transparent" }} className="p-4">
