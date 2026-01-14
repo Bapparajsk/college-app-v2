@@ -2,6 +2,7 @@
 import {
   BottomSheetBackdrop,
   BottomSheetBackdropProps,
+  BottomSheetFooterProps,
   BottomSheetModal,
   BottomSheetModalProvider,
 } from '@gorhom/bottom-sheet';
@@ -21,6 +22,8 @@ export type BottomSheetConfig = {
   enableHandlePanningGesture?: boolean;
   keyboardBehavior?: 'interactive' | 'extend' | 'fillParent';
   keyboardBlurBehavior?: 'none' | 'restore';
+  enableDynamicSizing?: boolean;
+  footerComponent?: React.FC<BottomSheetFooterProps> | undefined; 
   onClose?: () => void;
 };
 
@@ -281,7 +284,8 @@ export const BottomSheetProvider: React.FC<{ children: React.ReactNode }> = ({ c
             keyboardBehavior={activeSheet.config.keyboardBehavior}
             keyboardBlurBehavior={activeSheet.config.keyboardBlurBehavior}
             android_keyboardInputMode="adjustResize"
-            
+            enableDynamicSizing={activeSheet.config.enableDynamicSizing}
+            footerComponent={activeSheet.config.footerComponent}
           >
             {activeSheet.content}
           </BottomSheetModal>

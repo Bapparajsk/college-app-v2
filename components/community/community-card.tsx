@@ -1,30 +1,57 @@
 import { useManagedBottomSheet } from '@/hooks/useBottomSheetInstance'
 import { shadows } from '@/theme/shadow'
 import { colors } from '@/theme/theme'
-import { Share2Icon, ThumbsUpIcon, UsersRoundIcon } from 'lucide-react-native'
+import { BottomSheetScrollView, BottomSheetTextInput } from '@gorhom/bottom-sheet'
+import { MessageCircleIcon, Share2Icon, ThumbsUpIcon, UsersRoundIcon } from 'lucide-react-native'
 import React, { useEffect } from 'react'
 import { Image, Text, View } from 'react-native'
-import { BottomSheetContent } from '../ui/BottomSheetComponents'
 import { AnimatedButton } from '../ui/button'
+import CommentCard from './comment-card'
 
 export default function CommunityCard() {
 
-    const { show, expand, close } = useManagedBottomSheet();
+    const { show, expand } = useManagedBottomSheet();
 
     useEffect(() => {
         show(
-            <BottomSheetContent>
-                <View className="w-full h-[90%] bg-pink-400">
-                    <Text className="text-white">Hello from Bottom Sheet!</Text>
+            <>
+                <View className='w-full h-10 flex-row items-center justify-center px-5'>
+                    <View className='w-20 h-1.5 bg-stone-800 rounded-full my-2' />
                 </View>
-                
-            </BottomSheetContent>,
+                <View className='w-full h-auto items-center mb-5 px-4'>
+                    <View className='w-full h-auto flex-row items-end justify-between gap-2 p-1 bg-gray-200 rounded-2xl'>
+                        <View className='w-4/6'>
+                            <BottomSheetTextInput
+                                placeholder='Write a comment...'
+                                multiline
+                                maxLength={150}
+                                numberOfLines={4}
+                                className="w-full h-auto text-base font-poppins-medium"
+                            />
+                        </View>
+                        <AnimatedButton>
+                            <View className="h-12 w-auto px-3 bg-black rounded-2xl flex-row items-center justify-center gap-2">
+                                <MessageCircleIcon color="white" size={20} />
+                                <Text className="text-white font-poppins-medium">Comment</Text>
+                            </View>
+                        </AnimatedButton>
+                    </View>
+                </View>
+                <BottomSheetScrollView >
+                    {[1, 2,].map((item) => (
+                        <View key={item} className="mb-4 px-3">
+                            <CommentCard />
+                        </View>
+                    ))}
+                </BottomSheetScrollView>
+            </>,
             {
                 snapPoints: ["90%"],
-                // enablePanDownToClose: true,
+                enableDynamicSizing: false,
+                keyboardBehavior: "interactive",
             }
         );
-    },[])
+    }, [])
 
     return (
         <View style={shadows.sm} className="w-full h-auto bg-white mb-2 rounded-3xl py-3 px-5">
@@ -40,7 +67,7 @@ export default function CommunityCard() {
                     </View>
                     <View className="justify-center">
                         <Text className="text-lg font-poppins-semibold">
-                            Jane Doe
+                            Jane
                         </Text>
                         <Text className="text-sm font-poppins text-gray-500">
                             2 hours ago
@@ -102,7 +129,7 @@ export default function CommunityCard() {
                 </AnimatedButton>
                 <AnimatedButton scale={1} onPress={() => {
                     // console.log("press");
-                    
+
                 }}>
                     {({ pressed }) => (
                         <View className="rounded-full overflow-hidden border border-transparent">
