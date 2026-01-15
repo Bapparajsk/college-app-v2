@@ -2,7 +2,7 @@ import { useManagedBottomSheet } from '@/hooks/useBottomSheetInstance'
 import { shadows } from '@/theme/shadow'
 import { colors } from '@/theme/theme'
 import { BottomSheetScrollView, BottomSheetTextInput } from '@gorhom/bottom-sheet'
-import { MessageCircleIcon, Share2Icon, ThumbsUpIcon, UsersRoundIcon } from 'lucide-react-native'
+import { SendHorizontalIcon, Share2Icon, ThumbsUpIcon, UsersRoundIcon } from 'lucide-react-native'
 import React, { useEffect } from 'react'
 import { Image, Text, View } from 'react-native'
 import { AnimatedButton } from '../ui/button'
@@ -19,7 +19,7 @@ export default function CommunityCard() {
                     <View className='w-20 h-1.5 bg-stone-800 rounded-full my-2' />
                 </View>
                 <View className='w-full h-auto items-center mb-5 px-4'>
-                    <View className='w-full h-auto flex-row items-end justify-between gap-2 p-1 bg-gray-200 rounded-2xl'>
+                    <View className='w-full h-auto flex-row items-start justify-between gap-2 p-1 bg-gray-200 rounded-2xl'>
                         <View className='w-4/6'>
                             <BottomSheetTextInput
                                 placeholder='Write a comment...'
@@ -30,9 +30,9 @@ export default function CommunityCard() {
                             />
                         </View>
                         <AnimatedButton>
-                            <View className="h-12 w-auto px-3 bg-black rounded-2xl flex-row items-center justify-center gap-2">
-                                <MessageCircleIcon color="white" size={20} />
-                                <Text className="text-white font-poppins-medium">Comment</Text>
+                            <View className="h-11 w-auto px-3 bg-teal-500 rounded-2xl flex-row items-center justify-center gap-2">
+                                <Text className="text-white font-poppins-medium">Send</Text>
+                                <SendHorizontalIcon color="white" size={20} />
                             </View>
                         </AnimatedButton>
                     </View>
