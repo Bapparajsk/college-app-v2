@@ -1,10 +1,10 @@
-import { sampleProjects, simpleMembers } from '@/data/sampleProjects';
+import { simpleMembers } from '@/data/sampleProjects';
 import { FlashList } from '@shopify/flash-list';
 import { useRouter } from 'expo-router';
 import {
+    ChartLineIcon,
     LucideIcon,
     NotebookTextIcon,
-    PanelsTopLeftIcon,
     UsersRoundIcon
 } from 'lucide-react-native';
 import React, { useState } from 'react';
@@ -14,8 +14,8 @@ import Animated, {
     useSharedValue,
     withSpring
 } from 'react-native-reanimated';
-import ProjectCard from '../ui/project-card';
 import MemberCard from './member-card';
+import ProfileChart from './profile-chart';
 
 const isActiveTab = (index: number, activeIndex: number): boolean => index === activeIndex;
 
@@ -52,7 +52,7 @@ export default function Tabs() {
                         onPress={onTabPress}
                         key={0}
                         idx={0}
-                        Icon={PanelsTopLeftIcon}
+                        Icon={ChartLineIcon}
                         isActive={isActiveTab(0, activeTab)}
                     />
 
@@ -98,14 +98,7 @@ export default function Tabs() {
                     display: activeTab === 0 ? 'flex' : 'none',
                     flex: 1 
                 }}>
-                    <FlashList
-                        data={sampleProjects}
-                        renderItem={({ item }) => <ProjectCard {...item} />}
-                        // estimatedItemSize={100}
-                        keyExtractor={(item, index) => `project-${index}`}
-                        contentContainerStyle={{ paddingVertical: 20 }}
-                        showsVerticalScrollIndicator={false}
-                    />
+                    <ProfileChart/>
                 </View>
                 
                 {/* Members Tab */}

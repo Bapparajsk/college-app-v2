@@ -1,5 +1,7 @@
 // Define the return type
 export type DayTypes = 'Monday' | 'Tuesday'| 'Wednesday'| 'Thursday' | 'Friday' | 'Saturday' | 'Sunday';
+export type MonthTypes = "January" | "February" | "March" | "April" | "May" | "June" | "July" | "August" | "September" | "October" | "November" | "December"; 
+
 
 type DayDateInfo = {
     day: DayTypes;
@@ -15,6 +17,7 @@ const padZero = (num: number): string => num.toString().padStart(2, '0');
 
 // Array of days for reference
 const daysOfWeek:DayTypes[] = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const monthsOfYear: MonthTypes[] = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 // Even more concise version
 export function getCurrentWeekDays(): DayDateInfo[] {
@@ -68,7 +71,7 @@ export function isToday(dateToCheck: DayDateInfo['date']): boolean {
 }
 
 
-export function formatDay(day: DayTypes, length = 3) {
+export function formatDay(day: DayTypes | MonthTypes, length = 3) {
     return day.substring(0, length);
 }
 
@@ -107,4 +110,12 @@ export function formatHourTo12(hour: number): string {
     const m = minutes.toString().padStart(2, "0");
 
     return `${h}:${m} ${suffix}`;
+}
+
+export function getMonthAndYear(): { month: MonthTypes; year: string } {
+    const today = new Date();
+    const month = monthsOfYear[today.getMonth()];
+    const year = today.getFullYear().toString();
+
+    return { month, year };
 }
