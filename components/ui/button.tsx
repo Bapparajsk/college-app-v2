@@ -3,15 +3,26 @@ import { buttonVariants } from "@/theme/theme";
 import { ButtonKeys } from "@/types/buttonVariants";
 import { useRouter } from "expo-router";
 import { FC } from "react";
-import { GestureResponderEvent, Pressable, PressableProps, PressableStateCallbackType, View, ViewProps } from "react-native";
-import Animated, { useAnimatedStyle, useSharedValue, withSpring } from "react-native-reanimated";
+import {
+    GestureResponderEvent,
+    Pressable,
+    PressableProps,
+    PressableStateCallbackType,
+    View,
+    ViewProps,
+} from "react-native";
+import Animated, {
+    useAnimatedStyle,
+    useSharedValue,
+    withSpring,
+} from "react-native-reanimated";
 
 type ButtonProps = PressableProps & {
     children: (props: PressableStateCallbackType) => React.ReactNode;
     className?: string;
     shadow?: keyof typeof shadows;
     href?: string;
-}
+};
 
 type ButtonWrapperProps = ViewProps & {
     children: React.ReactNode;
@@ -19,12 +30,18 @@ type ButtonWrapperProps = ViewProps & {
     hovered?: boolean;
     pressed?: boolean;
     rounded?: string;
-}
+};
 
 const AnimatedTouchableOpacity = Animated.createAnimatedComponent(Pressable);
 
-export default function Button({ children, className, shadow = "md", href, onPress, ...rest }: ButtonProps) {
-
+export default function Button({
+    children,
+    className,
+    shadow = "md",
+    href,
+    onPress,
+    ...rest
+}: ButtonProps) {
     const router = useRouter();
 
     const handlePress = (e: GestureResponderEvent) => {
@@ -34,7 +51,7 @@ export default function Button({ children, className, shadow = "md", href, onPre
         if (onPress) {
             onPress(e);
         }
-    }
+    };
 
     return (
         <Pressable
@@ -48,8 +65,16 @@ export default function Button({ children, className, shadow = "md", href, onPre
     );
 }
 
-export const ButtonWrapper = ({ children, variant = "default", hovered, pressed, rounded = "full", className, style, ...rest }: ButtonWrapperProps) => {
-
+export const ButtonWrapper = ({
+    children,
+    variant = "default",
+    hovered,
+    pressed,
+    rounded = "full",
+    className,
+    style,
+    ...rest
+}: ButtonWrapperProps) => {
     const buttonStyles = buttonVariants[variant];
 
     return (
@@ -68,12 +93,12 @@ export const ButtonWrapper = ({ children, variant = "default", hovered, pressed,
             {children}
         </View>
     );
-}
+};
 
 export interface AnimatedButtonProps {
     className?: string;
-    children: React.ReactNode | ButtonProps['children'];
-    style?: View['props']['style'];
+    children: React.ReactNode | ButtonProps["children"];
+    style?: View["props"]["style"];
     onPress?: () => void;
     disabled?: boolean;
     scale?: number; // Press scale factor (default: 0.95)
@@ -85,7 +110,10 @@ export interface AnimatedButtonProps {
     };
     hoverScale?: number; // Optional hover effect for web
     activeOpacity?: number; // Opacity when pressed
-    hitSlop?: number | { top: number; bottom: number; left: number; right: number; };
+    hitSlop?:
+    | number
+    | { top: number; bottom: number; left: number; right: number };
+    href?: string;
 }
 
 export const AnimatedButton: FC<AnimatedButtonProps> = ({
@@ -100,9 +128,11 @@ export const AnimatedButton: FC<AnimatedButtonProps> = ({
     hoverScale = 1.02,
     activeOpacity = 0.8,
     hitSlop,
+    href,
 }) => {
     const activePress = useSharedValue(false);
     const progress = useSharedValue(0);
+    const router = useRouter();
 
     const onPressIn = () => {
         if (disabled) return;
@@ -121,6 +151,9 @@ export const AnimatedButton: FC<AnimatedButtonProps> = ({
     const handlePress = () => {
         if (disabled || !onPress) return;
         onPress();
+        if (href) {
+            router.push(href as any);
+        }
     };
 
     // SCMOD Animation Styles
@@ -145,10 +178,7 @@ export const AnimatedButton: FC<AnimatedButtonProps> = ({
 
         return {
             // SCALE
-            transform: [
-                { scale: buttonScale },
-                { translateY },
-            ],
+            transform: [{ scale: buttonScale }, { translateY }],
 
             // COLOR/SURFACE
             opacity: surfaceOpacity * disabledOpacity,
@@ -159,7 +189,7 @@ export const AnimatedButton: FC<AnimatedButtonProps> = ({
             shadowOffset,
 
             // Additional visual feedback
-            backgroundColor: disabled ? '#cccccc' : undefined,
+            backgroundColor: disabled ? "#cccccc" : undefined,
         };
     });
 
@@ -177,7 +207,11 @@ export const AnimatedButton: FC<AnimatedButtonProps> = ({
             hitSlop={hitSlop}
         >
             {/* { typeof children === 'function' ? children({ pressed: activePress }) : children } */}
-            {({ hovered, pressed }) => typeof children === 'function' ? children({ pressed, hovered }) : children}
+            {({ hovered, pressed }) =>
+                typeof children === "function"
+                    ? children({ pressed, hovered })
+                    : children
+            }
         </AnimatedTouchableOpacity>
     );
 };
