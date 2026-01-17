@@ -1,10 +1,10 @@
-import { BottomSheetContent } from '@/components/ui/BottomSheetComponents';
-import { AnimatedButton } from '@/components/ui/button';
-import { useManagedBottomSheet } from '@/hooks/useBottomSheetInstance';
-import { TouchableOpacity } from '@gorhom/bottom-sheet';
-import { ChevronDownIcon } from 'lucide-react-native';
-import React, { useEffect, useRef, useState } from 'react';
-import { Text, View } from 'react-native';
+import {BottomSheetContent} from '@/components/ui/BottomSheetComponents';
+import {AnimatedButton} from '@/components/ui/button';
+import {useManagedBottomSheet} from '@/hooks/useBottomSheetInstance';
+import {TouchableOpacity} from '@gorhom/bottom-sheet';
+import {ChevronDownIcon} from 'lucide-react-native';
+import React, {useEffect, useRef, useState} from 'react';
+import {Text, View} from 'react-native';
 
 // 提取内容组件，使其能独立更新
 const BottomSheetContentComponent = ({ text, onPress }: { text: string; onPress: () => void }) => (
