@@ -1,11 +1,9 @@
-import { shadows } from '@/theme/shadow'
 import { GraduationCapIcon } from 'lucide-react-native'
 import { useEffect, useState } from 'react'
-import { Text, TouchableOpacity, View } from 'react-native'
+import { Text, View } from 'react-native'
 import Animated, {
     Easing,
     interpolate,
-    runOnJS,
     useAnimatedReaction,
     useAnimatedStyle,
     useSharedValue,
@@ -13,11 +11,11 @@ import Animated, {
     withSequence,
     withTiming
 } from 'react-native-reanimated'
-import Button, { ButtonWrapper } from '../ui/button'
+import { scheduleOnRN } from 'react-native-worklets'
+import Button, { AnimatedButton, ButtonWrapper } from '../ui/button'
 
-const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity)
-const AnimatedText = Animated.createAnimatedComponent(Text)
-const AnimatedView = Animated.createAnimatedComponent(View)
+const AnimatedText = Animated.createAnimatedComponent(Text);
+const AnimatedView = Animated.createAnimatedComponent(View);
 
 export default function UserProgressHeader() {
     // Animation values
@@ -36,7 +34,7 @@ export default function UserProgressHeader() {
     useAnimatedReaction(
         () => progress.value,
         (currentValue) => {
-            runOnJS(setAnimatedProgress)(Math.floor(currentValue))
+            scheduleOnRN(setAnimatedProgress, Math.round(currentValue))
         }
     )
 
@@ -92,36 +90,6 @@ export default function UserProgressHeader() {
         ]
     }))
 
-    // Interactive press handler
-    const handlePressIn = () => {
-        scale.value = withTiming(0.92, {
-            duration: 150,
-            easing: Easing.in(Easing.quad)
-        })
-    }
-
-    const handlePressOut = () => {
-        scale.value = withTiming(1, {
-            duration: 200,
-            easing: Easing.out(Easing.quad)
-        })
-
-        // Add a little celebratory rotation on release
-        rotate.value = withSequence(
-            withTiming(5, {
-                duration: 100,
-                easing: Easing.out(Easing.quad)
-            }),
-            withTiming(-5, {
-                duration: 100,
-                easing: Easing.out(Easing.quad)
-            }),
-            withTiming(0, {
-                duration: 100,
-                easing: Easing.out(Easing.quad)
-            })
-        )
-    }
 
     // Handle progress container press
     const handleProgressPress = () => {
@@ -136,22 +104,13 @@ export default function UserProgressHeader() {
                 easing: Easing.out(Easing.back(1.2))
             })
         )
-
-        // Progress increase animation (for demo)
-
     }
-
-    
 
     return (
         <AnimatedView className='w-full h-[80px] justify-center items-center my-3'>
             <AnimatedView className='w-full h-full' style={containerStyle}>
-                <AnimatedTouchable
-                    activeOpacity={0.65}
-                    style={[shadows.sm, containerStyle]}
+                <AnimatedButton
                     className='w-full h-full px-4 flex-row justify-between items-center bg-[#ced4da] rounded-[30px]'
-                    onPressIn={handlePressIn}
-                    onPressOut={handlePressOut}
                     onPress={handleProgressPress}
                 >
                     <View>
@@ -192,7 +151,7 @@ export default function UserProgressHeader() {
                             best
                         </Text>
                     </AnimatedView>
-                </AnimatedTouchable>
+                </AnimatedButton>
             </AnimatedView>
         </AnimatedView>
     )

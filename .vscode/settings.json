@@ -1,12 +1,7 @@
 {
   "editor.codeActionsOnSave": {
-    "source.fixAll": "explicit",
     "source.organizeImports": "explicit",
     "source.sortMembers": "explicit"
   },
-  "cSpell.words": [
-    "nativewind",
-    "Pressable",
-    "squircle"
-  ]
+  "cSpell.words": ["nativewind", "Pressable", "squircle"]
 }

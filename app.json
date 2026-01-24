@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "college-app-v2",
-    "slug": "college-app-v2",
+    "slug": "test-app-college",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -45,6 +45,13 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "2750e72f-dc42-4a0d-bb6a-6fc03ed89b8c"
+      }
+    },
+    "owner": "bapparaj"
   }
 }
