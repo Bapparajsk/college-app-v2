@@ -1,7 +1,9 @@
 import { SendIcon } from 'lucide-react-native'
 import React from 'react'
 import { Text, TextInput, View } from 'react-native'
-import { AnimatedButton } from '../ui/button'
+import { AnimatedButton } from './button'
+
+
 
 export default function InputButton() {
     return (

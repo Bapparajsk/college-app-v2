@@ -1,6 +1,6 @@
 import CommunityCard from "@/components/community/community-card";
-import InputButton from "@/components/community/input-button";
 import Header from "@/components/header/header";
+import InputButton from "@/components/ui/input-button";
 import { communityTestData } from "@/data/data";
 import { FlashList } from "@shopify/flash-list";
 import { ScrollView, Text, View } from "react-native";

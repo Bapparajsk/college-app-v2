@@ -110,47 +110,50 @@ export default function UserProgressHeader() {
         <AnimatedView className='w-full h-[80px] justify-center items-center my-3'>
             <AnimatedView className='w-full h-full' style={containerStyle}>
                 <AnimatedButton
-                    className='w-full h-full px-4 flex-row justify-between items-center bg-[#ced4da] rounded-[30px]'
                     onPress={handleProgressPress}
                 >
-                    <View>
-                        <View className='flex-row items-center gap-3'>
-                            <AnimatedView style={iconStyle} className='size-14'>
-                                <Button>
-                                    {({ hovered, pressed }) => (
-                                        <ButtonWrapper
-                                            hovered={hovered}
-                                            pressed={pressed}
-                                            variant="default"
-                                            rounded="full"
-                                            className="px-3 py-1 rounded-full"
-                                        >
-                                            <GraduationCapIcon size={28} />
-                                        </ButtonWrapper>
-                                    )}
-                                </Button>
-                            </AnimatedView>
-                            <View>
-                                <Text className='font-poppins-semibold text-lg'>
-                                    Progress
-                                </Text>
-                                <Text className='font-inter-medium text-gray-700'>
-                                    1st Year - Semester 1
-                                </Text>
+                    <View
+                        className='w-full h-full px-4 flex-row justify-between items-center bg-[#ced4da] rounded-[30px]'
+                    >
+                        <View>
+                            <View className='flex-row items-center gap-3'>
+                                <AnimatedView style={iconStyle} className='size-14'>
+                                    <Button>
+                                        {({ hovered, pressed }) => (
+                                            <ButtonWrapper
+                                                hovered={hovered}
+                                                pressed={pressed}
+                                                variant="default"
+                                                rounded="full"
+                                                className="px-3 py-1 rounded-full"
+                                            >
+                                                <GraduationCapIcon size={28} />
+                                            </ButtonWrapper>
+                                        )}
+                                    </Button>
+                                </AnimatedView>
+                                <View>
+                                    <Text className='font-poppins-semibold text-lg'>
+                                        Progress
+                                    </Text>
+                                    <Text className='font-inter-medium text-gray-700'>
+                                        1st Year - Semester 1
+                                    </Text>
+                                </View>
                             </View>
                         </View>
-                    </View>
 
-                    <AnimatedView className='border-l-2 border-gray-400 pl-4' style={progressTextStyle}>
-                        <AnimatedText className='font-poppins-semibold text-lg'>
-                            <AnimatedText className='text-2xl'>
-                                {animatedProgress}
-                            </AnimatedText>%
-                        </AnimatedText>
-                        <Text className='font-inter-medium text-gray-600 text-center text-sm'>
-                            best
-                        </Text>
-                    </AnimatedView>
+                        <AnimatedView className='border-l-2 border-gray-400 pl-4' style={progressTextStyle}>
+                            <AnimatedText className='font-poppins-semibold text-lg'>
+                                <AnimatedText className='text-2xl'>
+                                    {animatedProgress}
+                                </AnimatedText>%
+                            </AnimatedText>
+                            <Text className='font-inter-medium text-gray-600 text-center text-sm'>
+                                best
+                            </Text>
+                        </AnimatedView>
+                    </View>
                 </AnimatedButton>
             </AnimatedView>
         </AnimatedView>

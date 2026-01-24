@@ -24,6 +24,10 @@ export default function RootLayout() {
                                 headerShown: false,
                                 animation: "fade"
                             }} />
+                            <Stack.Screen name={"subjects"} options={{
+                                headerShown: false,
+                                animation: "slide_from_right"
+                            }} />
                         </Stack>
                     </BottomSheetProvider>
                 </GestureHandlerRootView>

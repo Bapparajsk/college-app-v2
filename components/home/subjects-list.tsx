@@ -18,8 +18,9 @@ export default function SubjectsList() {
                     bgUri="https://garden.spoonflower.com/c/3814195/i/xs/h0PI2NUgq5DdHh7Q3tBjMVdaLA19HoVnm38/3814195.jpg"
                     title="Mathematics"
                     subTitle="10 Lessons"
-                    href="/subjects/mathematics"
+                    href="/subjects"
                     Icon={RadicalIcon}
+                    
                 />
                 <SubjectCard
                     bgUri="https://wallpapers.com/images/hd/english-2000-x-1261-wallpaper-niju8wupslurmn2i.jpg"
