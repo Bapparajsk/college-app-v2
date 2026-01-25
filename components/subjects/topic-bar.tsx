@@ -91,43 +91,37 @@ export default function TopicBar() {
                 scrollEventThrottle={16}
             />
 
-            <If
-                condition={showLeftGradient}
-                then={
-                    <LinearGradient
-                        colors={['rgba(255,255,255,1)', 'rgba(255,255,255,0)']}
-                        start={{ x: 0, y: 0 }}
-                        end={{ x: 1, y: 0 }}
-                        style={{
-                            position: 'absolute',
-                            left: 0,
-                            top: 0,
-                            bottom: 0,
-                            width: 20,
-                            pointerEvents: 'none',
-                        }}
-                    />
-                }
-            />
+            <If condition={showLeftGradient} >
+                <LinearGradient
+                    colors={['rgba(255,255,255,1)', 'rgba(255,255,255,0)']}
+                    start={{ x: 0, y: 0 }}
+                    end={{ x: 1, y: 0 }}
+                    style={{
+                        position: 'absolute',
+                        left: 0,
+                        top: 0,
+                        bottom: 0,
+                        width: 20,
+                        pointerEvents: 'none',
+                    }}
+                />
+            </If>
 
-            <If
-                condition={showRightGradient}
-                then={
-                    <LinearGradient
-                        colors={['rgba(255,255,255,0)', 'rgba(255,255,255,1)']}
-                        start={{ x: 0, y: 0 }}
-                        end={{ x: 1, y: 0 }}
-                        style={{
-                            position: 'absolute',
-                            right: 0,
-                            top: 0,
-                            bottom: 0,
-                            width: 20,
-                            pointerEvents: 'none',
-                        }}
-                    />
-                }
-            />
+            <If condition={showRightGradient} >
+                <LinearGradient
+                    colors={['rgba(255,255,255,0)', 'rgba(255,255,255,1)']}
+                    start={{ x: 0, y: 0 }}
+                    end={{ x: 1, y: 0 }}
+                    style={{
+                        position: 'absolute',
+                        right: 0,
+                        top: 0,
+                        bottom: 0,
+                        width: 20,
+                        pointerEvents: 'none',
+                    }}
+                />
+            </If>
 
         </View>
     )

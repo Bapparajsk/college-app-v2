@@ -37,7 +37,7 @@ export default function Index() {
 
                     </View>
                 </View>
-
+                
             </Animated.ScrollView>
 
             <Header scrollY={scrollY} />

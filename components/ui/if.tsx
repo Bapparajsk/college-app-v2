@@ -49,9 +49,25 @@ const IfComponent: React.FC<IfProps> = ({
             isElseElement(child)
         );
 
+        // Handle case where no Then/Else components are found, but children are provided
+        if(!thenElement && !elseElement) {
+
+            const childrenContent = condition ? children : null;
+
+            if(wrapperStyle) {
+                return <View style={wrapperStyle}>{childrenContent}</View>;
+            }
+
+            if(condition) {
+                return <>{childrenContent}</>;
+            }
+        }
+
         const content = condition
             ? (thenElement as ReactElement<ThenProps>)?.props?.children
             : (elseElement as ReactElement<ElseProps>)?.props?.children;
+
+        
 
         if (wrapperStyle && content) {
             return <View style={wrapperStyle}>{content}</View>;
