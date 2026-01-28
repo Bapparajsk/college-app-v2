@@ -1,3 +1,4 @@
+import SubjectCard from '@/components/subjects/card';
 import Header from '@/components/subjects/header';
 import HeroBar from '@/components/subjects/hero-bar';
 import TopicBar from '@/components/subjects/topic-bar';
@@ -32,12 +33,10 @@ export default function Index() {
 
                 {/* Content Section */}
                 <View className="px-3 pb-8">
-                    <TopicBar/>
-                    <View className='w-full h-[600vh]'>
-
-                    </View>
+                    <TopicBar />
+                    <SubjectCard/>
                 </View>
-                
+
             </Animated.ScrollView>
 
             <Header scrollY={scrollY} />

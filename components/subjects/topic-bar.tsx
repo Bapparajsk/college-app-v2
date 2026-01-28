@@ -2,16 +2,17 @@ import { FlashList } from '@shopify/flash-list';
 import { LinearGradient } from 'expo-linear-gradient';
 import { LucideIcon, SigmaIcon } from 'lucide-react-native';
 import { useRef, useState } from 'react';
-import { Text, View } from 'react-native';
+import { NativeScrollEvent, NativeSyntheticEvent, Text, View } from 'react-native';
 import { AnimatedButton } from '../ui/button';
 import { If } from '../ui/if';
 
 
-const topics: {
-    id: string;
-    name: string;
-    Icon: LucideIcon
-}[] = [
+const topics:
+    {
+        id: string;
+        name: string;
+        Icon: LucideIcon
+    }[] = [
         {
             id: '1',
             name: 'Mathematics',
@@ -56,7 +57,7 @@ export default function TopicBar() {
     const [showRightGradient, setShowRightGradient] = useState(true);
     const scrollViewRef = useRef(null);
 
-    const handleScroll = (event: any) => {
+    const handleScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
         const { contentOffset, contentSize, layoutMeasurement } = event.nativeEvent;
         const scrollX = contentOffset.x;
         const containerWidth = layoutMeasurement.width;
